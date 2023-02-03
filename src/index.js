@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import mongoose, { connect, set } from 'mongoose';
@@ -12,10 +11,6 @@ import campgroundRoutes from './routes/campgrounds.js';
 import reviewRoutes from './routes/reviews.js';
 import userRoutes from './routes/users.js';
 import User from './models/user.js';
-
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
 
 set('strictQuery', true);
 connect('mongodb://localhost:27017/yelp-camp', {
