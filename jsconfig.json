@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "NodeNext",
+        "moduleResolution": "node",
+        "isolatedModules": true,
+        "strict": true,
+        "baseUrl": "src",
+        "paths": {
+            "@middleware/*": [
+                "middleware/*"
+            ],
+            "@models/*": [
+                "models/*"
+            ],
+        }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+    ]
+}
