@@ -15,6 +15,11 @@
 - `POST /campgrounds/:id/reviews` - creates a new review for a campground
 - `DELETE /campgrounds/:id/reviews/:reviewId` - deletes a review for a campground
 
+### Users:
+
+- `POST /register` - registers a new user
+- `POST /login` - logs in a user
+
 ## Data Models
 
 ### Campground:
@@ -26,6 +31,10 @@ const CampgroundSchema = new Schema({
   price: Number,
   description: String,
   location: String,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
@@ -53,6 +62,10 @@ const campgroundSchema = Joi.object({
 const ReviewSchema = new Schema({
   rating: Number,
   text: String,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 ```
 
@@ -87,22 +100,28 @@ const userSchema = Joi.object({
 
 ## Abstractions:
 
-| Technology | Purpose                        | Description                                                      |
-| ---------- | ------------------------------ | ---------------------------------------------------------------- |
-| Node.js    | JavaScript runtime environment | Used for running the server                                      |
-| Nodemon    | Development server             | Used for running the server in development                       |
-| Express    | Web framework                  | Used for creating the RESTful API                                |
-| MongoDB    | Database                       | NoSQL database, used for storing the data                        |
-| Mongoose   | MongoDB object modeling        | ODM, used for the seamless creation of models                    |
-| Joi        | Object schema validation       | Server-side validation, used for validating the body of requests |
+| Technology      | Purpose                        | Description                                                      |
+| --------------- | ------------------------------ | ---------------------------------------------------------------- |
+| Node.js         | JavaScript runtime environment | Used for running the server                                      |
+| Nodemon         | Development server             | Used for running the server in development                       |
+| Cors            | Cross-origin resource sharing  | Used for allowing cross-origin requests                          |
+| Express         | Web framework                  | Used for creating the RESTful API                                |
+| MongoDB         | Database                       | NoSQL database, used for storing the data                        |
+| Mongoose        | MongoDB object modeling        | ODM, used for the seamless creation of models                    |
+| Joi             | Object schema validation       | Server-side validation, used for validating the body of requests |
+| Dotenv          | Environment variables          | Used for storing environment variables                           |
+| Passport        | Authentication                 | Used for authentication                                          |
+| Express-Session | Session management             | Used for managing sessions                                       |
 
 ## References:
 
+- [Node.js](https://nodejs.org/en/)
+- [Nodemon](https://npmjs.com/package/nodemon)
+- [Cors](https://npmjs.com/package/cors)
 - [Express](http://expressjs.com/)
 - [Mongoose](https://mongoosejs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Cors](https://www.npmjs.com/package/cors)
-- [Dotenv](https://www.npmjs.com/package/dotenv)
-- [Morgan](https://www.npmjs.com/package/morgan)
-- [Nodemon](https://www.npmjs.com/package/nodemon)
-- [Joi](https://www.npmjs.com/package/joi)
+- [MongoDB](https://mongodb.com/)
+- [Joi](https://npmjs.com/package/joi)
+- [Dotenv](https://npmjs.com/package/dotenv)
+- [Passport](http://passportjs.org/)
+- [Express-Session](https://npmjs.com/package/express-session)
