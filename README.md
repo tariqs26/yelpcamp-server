@@ -130,8 +130,7 @@ const userSchema = Joi.object({
 | [Express-Session](https://npmjs.com/package/express-session)                   | Session management             | Used for managing sessions                                       |
 | [Helmet](https://helmetjs.github.io/)                                          | Security                       | Used for setting security-related HTTP headers                   |
 | [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Security                       | Used for sanitizing user input against NoSQL query injection     |
-
-## Installation:
+| [Railway](https://railway.app/)                                                | Deployment                     | Used for deploying the server to the cloud                       |
 
 ### `npm install`
 
@@ -157,7 +156,7 @@ const userSchema = Joi.object({
 ## Environment Variables:
 
 - `DB_URL` - MongoDB connection string, can be local or remote
-- `SECRET` - Secret used for signing the session cookie 
+- `SECRET` - Secret used for signing the session cookie
 - `MAPBOX_TOKEN` - Mapbox API token, used for displaying the map on the frontend
 - `CLIENT_ORIGIN` - The origin of the client, used for CORS, can be local or remote
 - **Note**: In order to use a non https origin, you need to remove the `secure` option from the cookie session
