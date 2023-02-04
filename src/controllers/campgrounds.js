@@ -37,6 +37,9 @@ export const createCampground = async (req, res) => {
     })
     .send();
   const campground = new Campground(req.body);
+  if (!geoData.body.features[0])
+    throw new ExpressError('Location not found', 404);
+
   campground.geometry = geoData.body.features[0].geometry;
   campground.author = req.user._id;
   await campground.save();
