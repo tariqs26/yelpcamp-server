@@ -52,19 +52,20 @@ const store = new MongoDBStore({
 store.on('error', function (e) {
   console.log('SESSION STORE ERROR', e);
 });
-
+app.set('trust proxy', 1);
 app.use(
   session({
     store,
-    name: 'apple touch icon',
     secret,
     resave: false,
-    secure: true, // only set cookies over https
     saveUninitialized: true,
+    name: 'apple touch icon',
     cookie: {
-      httpOnly: true, // prevents client side JS from reading the cookie
+      secure: true, // only set cookies over https
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 1000 * 60 * 60 * 24 * 7,
+      sameSite: 'none',
+      httpOnly: false,
     },
   })
 );
