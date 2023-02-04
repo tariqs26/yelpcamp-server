@@ -21,12 +21,12 @@ const CampgroundSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    mutable: false,
+    immutable: true,
   },
   updatedAt: {
     type: Date,
     default: Date.now,
-    mutable: false,
+    immutable: true,
   },
   author: {
     type: Schema.Types.ObjectId,
