@@ -157,6 +157,7 @@ const userSchema = Joi.object({
 ## Environment Variables:
 
 - `DB_URL` - MongoDB connection string, can be local or remote
+- `SECRET` - Secret used for signing the session cookie 
 - `MAPBOX_TOKEN` - Mapbox API token, used for displaying the map on the frontend
 - `CLIENT_ORIGIN` - The origin of the client, used for CORS, can be local or remote
 - **Note**: In order to use a non https origin, you need to remove the `secure` option from the cookie session

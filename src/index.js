@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose, { connect, set } from 'mongoose';
+import MongoDBStore from 'connect-mongo';
 import mongoSanitize from 'express-mongo-sanitize';
 import session from 'express-session';
 import ExpressError from './utils/ExpressError.js';
@@ -8,7 +9,6 @@ import passport from 'passport';
 import passportLocal from 'passport-local';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-
 if (process.env.NODE_ENV !== 'production') dotenv.config();
 
 import campgroundRoutes from './routes/campgrounds.js';
@@ -16,12 +16,13 @@ import reviewRoutes from './routes/reviews.js';
 import userRoutes from './routes/users.js';
 import User from './models/user.js';
 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+
 set('strictQuery', true);
-connect('mongodb://localhost:27017/yelp-camp', {
+connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -33,18 +34,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN,
+    origin: process.env.CLIENT_ORIGIN || 'http://localhost:3001',
     credentials: true,
   })
 );
 app.use(helmet());
 app.use(mongoSanitize());
+
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+
+const store = new MongoDBStore({
+  mongoUrl: dbUrl,
+  secret,
+  touchAfter: 24 * 60 * 60, // time period in seconds, after which the session will be updated in the database
+});
+
+store.on('error', function (e) {
+  console.log('SESSION STORE ERROR', e);
+});
+
 app.use(
   session({
+    store,
     name: 'apple touch icon',
-    secret: 'this should be a secret',
+    secret,
     resave: false,
-    // secure: true, // only set cookies over https
+    secure: true, // only set cookies over https
     saveUninitialized: true,
     cookie: {
       httpOnly: true, // prevents client side JS from reading the cookie
