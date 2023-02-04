@@ -6,6 +6,10 @@ import session from 'express-session';
 import ExpressError from './utils/ExpressError.js';
 import passport from 'passport';
 import passportLocal from 'passport-local';
+import helmet from 'helmet';
+import dotenv from 'dotenv';
+
+if (process.env.NODE_ENV !== 'production') dotenv.config();
 
 import campgroundRoutes from './routes/campgrounds.js';
 import reviewRoutes from './routes/reviews.js';
@@ -25,16 +29,15 @@ db.once('open', () => {
 });
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'http://localhost:3001',
+    origin: process.env.CLIENT_ORIGIN,
     credentials: true,
   })
 );
-app.use(express.static('public'));
+app.use(helmet());
 app.use(mongoSanitize());
 app.use(
   session({
