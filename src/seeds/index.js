@@ -19,10 +19,10 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
   await Campground.deleteMany({});
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 20; i++) {
     const randomCity = Math.floor(Math.random() * 494);
     const camp = new Campground({
-      author: '63d399532d1576726913e3e1',
+      author: "63de3fd6cf2b890846c31672",
       location: `${cities[randomCity].city}, ${cities[randomCity].province}`,
       geometry: {
         type: 'Point',
