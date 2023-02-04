@@ -26,7 +26,6 @@ const CampgroundSchema = new Schema({
   updatedAt: {
     type: Date,
     default: Date.now,
-    immutable: true,
   },
   author: {
     type: Schema.Types.ObjectId,
