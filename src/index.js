@@ -61,10 +61,10 @@ app.use(
     saveUninitialized: true,
     name: 'apple touch icon',
     cookie: {
-      secure: true, // only set cookies over https
+      secure: true, // only set cookies over https (comment out when testing)
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: 'none',
+      sameSite: 'none', // (comment out when testing)
       httpOnly: false,
     },
   })
