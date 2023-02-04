@@ -16,7 +16,8 @@
         }
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "src/index.js"
     ],
     "exclude": [
         "node_modules",
