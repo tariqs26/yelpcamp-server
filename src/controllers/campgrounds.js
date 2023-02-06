@@ -10,6 +10,16 @@ const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 export const index = async (_, res) => {
   // const { page = 1 } = req.query;
   // const MAX_CAMPGROUNDS = 10;
+  res.send(
+    {
+      // campgrounds: await Campground.find({})
+      //   .skip((page - 1) * MAX_CAMPGROUNDS)
+      //   .limit(MAX_CAMPGROUNDS),
+      // totalPages: Math.ceil(
+      //   (await Campground.countDocuments()) / MAX_CAMPGROUNDS
+      // ),
+    }
+  )
 
   res.send(await Campground.find({}));
 };
