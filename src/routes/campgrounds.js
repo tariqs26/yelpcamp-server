@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { createCampgroundLimiter } from '../middlewares/rateLimiter.js';
 import userLoggedIn from '../middlewares/userLoggedIn.js';
 import userAuthorized from '../middlewares/userAuthorized.js';
 import validateCampground from '../middlewares/validateCampground.js';
@@ -16,7 +17,12 @@ const router = Router();
 router
   .route('/')
   .get(catchAsync(index))
-  .post(userLoggedIn, validateCampground, catchAsync(createCampground));
+  .post(
+    userLoggedIn,
+    validateCampground,
+    createCampgroundLimiter,
+    catchAsync(createCampground)
+  );
 
 router
   .route('/:id')
