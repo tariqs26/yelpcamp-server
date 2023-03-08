@@ -11,5 +11,5 @@ export const createCampgroundLimiter = rateLimit({
   windowMs: 5 * 60 * 60 * 1000, // 5 hour window
   max: 5, // start blocking after 5 requests
   message:
-    'Too many campgrounds created from this IP, please try again after an hour',
+    'Too many campgrounds created from this IP, please try again after 5 hours',
 });
