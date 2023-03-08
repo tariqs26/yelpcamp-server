@@ -130,6 +130,7 @@ const userSchema = Joi.object({
 | [Express-Session](https://npmjs.com/package/express-session)                   | Session management             | Used for managing sessions                                       |
 | [Helmet](https://helmetjs.github.io/)                                          | Security                       | Used for setting security-related HTTP headers                   |
 | [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Security                       | Used for sanitizing user input against NoSQL query injection     |
+| [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Security                       | Used for limiting repeated requests to public APIs               |
 | [Railway](https://railway.app/)                                                | Deployment                     | Used for deploying the server to the cloud                       |
 
 ### `npm install`
