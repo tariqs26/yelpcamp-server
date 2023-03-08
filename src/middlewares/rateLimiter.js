@@ -10,7 +10,7 @@ export const accountCreationLimiter = rateLimit({
 
 export const createCampgroundLimiter = rateLimit({
   windowMs: 1 * 60 * 60 * 1000, // 1 hour window
-  max: 1, // start blocking after 5 requests
+  max: 5, // start blocking after 5 requests
   skipFailedRequests: true,
   message:
     'Too many campgrounds created from this IP, please try again after an hour',
