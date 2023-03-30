@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose, { connect, set } from 'mongoose';
-import MongoDBStore from 'connect-mongo';
 import mongoSanitize from 'express-mongo-sanitize';
+import helmet from 'helmet';
+import MongoDBStore from 'connect-mongo';
 import session from 'express-session';
-import ExpressError from './utils/ExpressError.js';
 import passport from 'passport';
 import passportLocal from 'passport-local';
-import helmet from 'helmet';
+import ExpressError from './utils/ExpressError.js';
 import dotenv from 'dotenv';
 if (process.env.NODE_ENV !== 'production') dotenv.config();
 
@@ -80,8 +80,8 @@ app.use(
 // Set up passport for authentication
 app.use(passport.initialize(), passport.session());
 passport.use(new passportLocal(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(User.serializeUser()); 
+passport.deserializeUser(User.deserializeUser()); 
 
 // Set up routes
 app.use('/campgrounds', campgroundRoutes);
