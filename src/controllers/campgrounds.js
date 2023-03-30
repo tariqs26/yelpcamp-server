@@ -8,19 +8,17 @@ if (process.env.NODE_ENV !== 'production') config();
 const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 
 export const index = async (req, res) => {
-  // const { page = 1 } = req.query;
-  // const MAX_CAMPGROUNDS = 5;
-  // res.send({
-  //   campgrounds: await Campground.find({})
-  //     .sort({ createdAt: -1 })
-  //     .skip((page - 1) * MAX_CAMPGROUNDS)
-  //     .limit(MAX_CAMPGROUNDS),
-  //   totalPages: Math.ceil(
-  //     (await Campground.countDocuments()) / MAX_CAMPGROUNDS
-  //   ),
-  // });
-
-  res.send(await Campground.find({}));
+  const { page = 1 } = req.query;
+  const MAX_CAMPGROUNDS = 5;
+  res.send({
+    campgrounds: await Campground.find({})
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * MAX_CAMPGROUNDS)
+      .limit(MAX_CAMPGROUNDS),
+    totalPages: Math.ceil(
+      (await Campground.countDocuments()) / MAX_CAMPGROUNDS
+    ),
+  });
 };
 
 export const getCampground = async (req, res) => {
