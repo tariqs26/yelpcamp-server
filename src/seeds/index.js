@@ -22,7 +22,7 @@ const seedDB = async () => {
   for (let i = 0; i < 20; i++) {
     const randomCity = Math.floor(Math.random() * 494);
     const camp = new Campground({
-      author: '63de3be333a99a686f1d1528',
+      author: '63de3fd6cf2b890846c31672',
       location: `${cities[randomCity].city}, ${cities[randomCity].province}`,
       geometry: {
         type: 'Point',
