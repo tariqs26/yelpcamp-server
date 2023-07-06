@@ -1,9 +1,9 @@
-import type { TokenRequest, Response, NextFunction } from "express"
+import type { Request, Response, NextFunction } from "express"
 import ExpressError from "../lib/ExpressError.js"
 import Campground from "../models/campground.js"
 
 export default async function userAuthorized(
-  req: TokenRequest,
+  req: Request,
   _: Response,
   next: NextFunction
 ) {

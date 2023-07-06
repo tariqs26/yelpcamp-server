@@ -1,4 +1,4 @@
-import type { Request } from "express"
+import type { Request, User as ExpressUser } from "express"
 
 type User = {
   _id: string
@@ -7,7 +7,6 @@ type User = {
 
 declare module "express" {
   interface Request {
-    user?: User
+    user?: ExpressUser & User
   }
 }
-

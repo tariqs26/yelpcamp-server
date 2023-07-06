@@ -1,4 +1,4 @@
-import type { Request, TokenRequest, Response } from "express"
+import type { Request, Response } from "express"
 import dotenv from "dotenv"
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js"
 import ExpressError from "../lib/ExpressError.js"
@@ -38,7 +38,7 @@ export async function getCampgroundById(req: Request, res: Response) {
   }
 }
 
-export async function createCampground(req: TokenRequest, res: Response) {
+export async function createCampground(req: Request, res: Response) {
   const geoData = await geocoder
     .forwardGeocode({
       query: req.body.location,

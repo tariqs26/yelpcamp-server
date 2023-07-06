@@ -1,8 +1,8 @@
-import type { TokenRequest, Response, NextFunction } from "express"
+import type { Request, Response, NextFunction } from "express"
 import ExpressError from "../lib/ExpressError.js"
 
 export default function userLoggedIn(
-  req: TokenRequest,
+  req: Request,
   _: Response,
   next: NextFunction
 ) {
