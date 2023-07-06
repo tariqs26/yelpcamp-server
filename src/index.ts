@@ -8,8 +8,9 @@ import mongoSanitize from "express-mongo-sanitize"
 import session from "express-session"
 import passport from "passport"
 import passportLocal from "passport-local"
-import ExpressError from "./lib/ExpressError"
 
+import ExpressError from "./lib/ExpressError"
+import { handleErrors } from "./lib/utils"
 import campgroundRoutes from "./routes/campgrounds"
 import reviewRoutes from "./routes/reviews"
 import userRoutes from "./routes/users"
@@ -91,9 +92,7 @@ app.all("*", (_, __, next) => {
 })
 
 // Set up error handler
-app.use((err, _: Request, res: Response, __: NextFunction) => {
-  res.status(err.status || 500).send(err.message)
-})
+app.use(handleErrors)
 
 const port = process.env.PORT || 3000
 
