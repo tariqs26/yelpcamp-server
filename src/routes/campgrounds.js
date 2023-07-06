@@ -3,10 +3,10 @@ import { createCampgroundLimiter } from "../middlewares/rateLimiter.js"
 import userLoggedIn from "../middlewares/userLoggedIn.js"
 import userAuthorized from "../middlewares/userAuthorized.js"
 import validateCampground from "../middlewares/validateCampground.js"
-import CampgroundsController from "../controllers/campgrounds.js"
+import * as controller from "../controllers/campgrounds.js"
 import catchAsync from "../utils/catchAsync.js"
 
-const [router, controller] = [Router(), new CampgroundsController()]
+const router = Router()
 
 router
   .route("/")
