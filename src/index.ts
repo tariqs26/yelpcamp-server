@@ -7,7 +7,7 @@ import helmet from "helmet"
 import mongoSanitize from "express-mongo-sanitize"
 import session from "express-session"
 import passport from "passport"
-import passportLocal from "passport-local"
+import { Strategy } from "passport-local"
 
 import ExpressError from "./lib/ExpressError"
 import { handleErrors } from "./lib/utils"
@@ -75,28 +75,24 @@ app.use(
   })
 )
 
-// Set up passport for authentication
 app.use(passport.initialize(), passport.session())
-passport.use(new passportLocal(User.authenticate()))
+passport.use(new Strategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-// Set up routes
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
 app.use("/", userRoutes)
 
-// For routes that don't exist
 app.all("*", (_, __, next) => {
   next(new ExpressError("Page not found", 404))
 })
 
-// Set up error handler
 app.use(handleErrors)
 
 const port = process.env.PORT || 3000
 
 // Enable server
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
+  console.log(`🗲 Server is running on port ${port}`)
 })
