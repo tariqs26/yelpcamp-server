@@ -1,7 +1,8 @@
 import type { Request, Response } from "express"
-import User from "../models/user.js"
-import ExpressError from "../lib/ExpressError.js"
+import User from "../models/user"
+import ExpressError from "../lib/ExpressError"
 import { MongooseError } from "mongoose"
+import { getParamsId } from "../lib/utils"
 
 export async function register(req: Request, res: Response) {
   try {
@@ -23,7 +24,6 @@ export async function logout(req: Request, res: Response) {
 }
 
 export async function deleteAccount(req: Request, res: Response) {
-  const { id } = req.params
-  await User.findByIdAndDelete(id)
+  await User.findByIdAndDelete(getParamsId(req))
   req.logout(() => res.send("Logged out"))
 }
