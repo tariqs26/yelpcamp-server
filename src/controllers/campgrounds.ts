@@ -1,19 +1,20 @@
+import type { Request, TokenRequest, Response } from "express"
 import dotenv from "dotenv"
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js"
-import ExpressError from "../utils/ExpressError.js"
+import ExpressError from "../lib/ExpressError.js"
 import Campground from "../models/campground.js"
 
 if (process.env.NODE_ENV !== "production") dotenv.config()
 
 const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
 
-export async function getCampgrounds(req, res) {
+export async function getCampgrounds(req: Request, res: Response) {
   const { page = 1 } = req.query
   const MAX_CAMPGROUNDS = 5
   res.send({
     campgrounds: await Campground.find({})
       .sort({ createdAt: -1 })
-      .skip((page - 1) * MAX_CAMPGROUNDS)
+      .skip((Number(page) - 1) * MAX_CAMPGROUNDS)
       .limit(MAX_CAMPGROUNDS),
     totalPages: Math.ceil(
       (await Campground.countDocuments()) / MAX_CAMPGROUNDS
@@ -21,7 +22,7 @@ export async function getCampgrounds(req, res) {
   })
 }
 
-export async function getCampgroundById(req, res) {
+export async function getCampgroundById(req: Request, res: Response) {
   const { id } = req.params
   try {
     const campground = await Campground.findById(id)
@@ -37,7 +38,7 @@ export async function getCampgroundById(req, res) {
   }
 }
 
-export async function createCampground(req, res) {
+export async function createCampground(req: TokenRequest, res: Response) {
   const geoData = await geocoder
     .forwardGeocode({
       query: req.body.location,
@@ -48,12 +49,12 @@ export async function createCampground(req, res) {
     throw new ExpressError("Location not found", 404)
 
   campground.geometry = geoData.body.features[0].geometry
-  campground.author = req.user._id
+  campground.author = req.user?._id
   await campground.save()
   res.send(campground)
 }
 
-export async function updateCampground(req, res) {
+export async function updateCampground(req: Request, res: Response) {
   const { id } = req.params
   const geoData = await geocoder
     .forwardGeocode({
@@ -68,7 +69,7 @@ export async function updateCampground(req, res) {
   res.send("Campground updated")
 }
 
-export async function deleteCampground(req, res) {
+export async function deleteCampground(req: Request, res: Response) {
   const { id } = req.params
   await Campground.findByIdAndDelete(id)
   res.send("Campground deleted")
