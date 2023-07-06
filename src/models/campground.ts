@@ -9,37 +9,17 @@ const CampgroundSchema = new Schema(
     price: Number,
     image: String,
     geometry: {
-      type: {
-        type: String,
-        enum: ["Point"],
-        required: true,
-      },
-      coordinates: {
-        type: [Number],
-        required: true,
-      },
+      type: { type: String, enum: ["Point"], required: true },
+      coordinates: { type: [Number], required: true },
     },
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-    reviews: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Review",
-      },
-    ],
+    author: { type: Schema.Types.ObjectId, ref: "User" },
+    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
   { timestamps: true }
 )
 
 CampgroundSchema.post("findOneAndDelete", async function (doc) {
-  if (doc)
-    await Review.deleteMany({
-      _id: {
-        $in: doc.reviews,
-      },
-    })
+  if (doc) await Review.deleteMany({ _id: { $in: doc.reviews } })
 })
 
 export default model("Campground", CampgroundSchema)

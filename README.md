@@ -54,26 +54,11 @@ const CampgroundSchema = new Schema(
     price: Number,
     image: String,
     geometry: {
-      type: {
-        type: String,
-        enum: ["Point"],
-        required: true,
-      },
-      coordinates: {
-        type: [Number],
-        required: true,
-      },
+      type: { type: String, enum: ["Point"], required: true },
+      coordinates: { type: [Number], required: true },
     },
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-    reviews: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Review",
-      },
-    ],
+    author: { type: Schema.Types.ObjectId, ref: "User" },
+    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
   { timestamps: true }
 )
@@ -86,13 +71,11 @@ const ReviewSchema = new Schema(
   {
     body: String,
     rating: Number,
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
+    author: { type: Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 )
+
 ```
 
 ### User:
@@ -114,7 +97,9 @@ const UserSchema = new Schema({
 
 ### Install dependencies:
 
-`npm i`
+```bash
+npm i
+```
 
 ### Configure environment variables:
 
@@ -122,7 +107,7 @@ const UserSchema = new Schema({
 DB_URL # MongoDB connection string
 SECRET # Secret used for signing session cookie
 MAPBOX_TOKEN # Mapbox API token
-CLIENT_ORIGIN # The origin of the client, used for CORS
+CLIENT_ORIGIN # Client url, used for CORS
 # Note: To use a non-https origin,remove the `secure` option from the cookie session
 ```
 
