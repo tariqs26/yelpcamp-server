@@ -12,6 +12,7 @@ const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
 export async function getCampgrounds(req: Request, res: Response) {
   const { page = 1 } = req.query
   const MAX_CAMPGROUNDS = 5
+
   res.send({
     campgrounds: await Campground.find({})
       .sort({ createdAt: -1 })
@@ -25,47 +26,49 @@ export async function getCampgrounds(req: Request, res: Response) {
 
 export async function createCampground(req: Request, res: Response) {
   const geoData = await geocoder
-    .forwardGeocode({
-      query: req.body.location,
-    })
+    .forwardGeocode({ query: req.body.location })
     .send()
-  const campground = new Campground(req.body)
+
   if (!geoData.body.features[0])
     throw new ExpressError("Location not found", 404)
 
+  const campground = new Campground(req.body)
   campground.geometry = geoData.body.features[0].geometry
   campground.author = req.user?._id
   await campground.save()
+
   res.send(campground)
 }
 
 export async function getCampgroundById(req: Request, res: Response) {
-  try {
-    const campground = await Campground.findById(getParamsId(req))
-    const populateReviews = await campground.populate({
-      path: "reviews",
-      populate: { path: "author" },
-    })
-    res.send(await populateReviews.populate("author"))
-  } catch (e) {
-    throw new ExpressError("Campground not found", 404)
-  }
+  const campground = await Campground.findById(getParamsId(req))
+  if (!campground) throw new ExpressError("Campground not found", 404)
+  const populateReviews = await campground.populate({
+    path: "reviews",
+    populate: { path: "author" },
+  })
+  res.send(await populateReviews.populate("author"))
 }
 
 export async function updateCampground(req: Request, res: Response) {
-  const geoData = await geocoder
-    .forwardGeocode({
-      query: req.body.location,
-    })
+  const { body } = await geocoder
+    .forwardGeocode({ query: req.body.location })
     .send()
-  req.body.geometry = geoData.body.features[0].geometry
-  await Campground.findByIdAndUpdate(getParamsId(req), req.body, {
-    new: true,
-  })
+
+  const campground = await Campground.findByIdAndUpdate(
+    getParamsId(req),
+    {
+      ...req.body,
+      geometry: body.features[0].geometry,
+    },
+    { new: true }
+  )
+  if (!campground) throw new ExpressError("Campground not found", 404)
   res.json("Campground updated successfully")
 }
 
 export async function deleteCampground(req: Request, res: Response) {
-  await Campground.findByIdAndDelete(getParamsId(req))
+  const campground = await Campground.findByIdAndDelete(getParamsId(req))
+  if (!campground) throw new ExpressError("Campground not found", 404)
   res.json("Campground deleted successfully")
 }
