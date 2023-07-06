@@ -11,9 +11,9 @@ import { Strategy } from "passport-local"
 
 import ExpressError from "./lib/ExpressError"
 import { handleErrors } from "./lib/utils"
-import campgroundRoutes from "./routes/campgrounds"
-import reviewRoutes from "./routes/reviews"
-import userRoutes from "./routes/users"
+import campgroundRoutes from "./routers/campgrounds"
+import reviewRoutes from "./routers/reviews"
+import userRoutes from "./routers/users"
 import User from "./models/user"
 
 if (process.env.NODE_ENV !== "production") dotenv.config()
