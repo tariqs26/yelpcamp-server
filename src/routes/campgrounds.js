@@ -1,38 +1,32 @@
-import { Router } from 'express';
-import { createCampgroundLimiter } from '../middlewares/rateLimiter.js';
-import userLoggedIn from '../middlewares/userLoggedIn.js';
-import userAuthorized from '../middlewares/userAuthorized.js';
-import validateCampground from '../middlewares/validateCampground.js';
-import {
-  index,
-  getCampground,
-  createCampground,
-  updateCampground,
-  deleteCampground,
-} from '../controllers/campgrounds.js';
-import catchAsync from '../utils/catchAsync.js';
+import { Router } from "express"
+import { createCampgroundLimiter } from "../middlewares/rateLimiter.js"
+import userLoggedIn from "../middlewares/userLoggedIn.js"
+import userAuthorized from "../middlewares/userAuthorized.js"
+import validateCampground from "../middlewares/validateCampground.js"
+import CampgroundsController from "../controllers/campgrounds.js"
+import catchAsync from "../utils/catchAsync.js"
 
-const router = Router();
+const [router, controller] = [Router(), new CampgroundsController()]
 
 router
-  .route('/')
-  .get(catchAsync(index))
+  .route("/")
+  .get(catchAsync(controller.getCampgrounds))
   .post(
     userLoggedIn,
     validateCampground,
     createCampgroundLimiter,
-    catchAsync(createCampground)
-  );
+    catchAsync(controller.createCampground)
+  )
 
 router
-  .route('/:id')
-  .get(catchAsync(getCampground))
+  .route("/:id")
+  .get(catchAsync(controller.getCampgroundById))
   .put(
     userLoggedIn,
     userAuthorized,
     validateCampground,
-    catchAsync(updateCampground)
+    catchAsync(controller.updateCampground)
   )
-  .delete(userLoggedIn, userAuthorized, catchAsync(deleteCampground));
+  .delete(userLoggedIn, userAuthorized, catchAsync(controller.deleteCampground))
 
-export default router;
+export default router
