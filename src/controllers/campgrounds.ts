@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js"
 import ExpressError from "../lib/ExpressError.js"
 import Campground from "../models/campground.js"
+import { getParamsId } from "../lib/utils.js"
 
 if (process.env.NODE_ENV !== "production") dotenv.config()
 
@@ -22,22 +23,6 @@ export async function getCampgrounds(req: Request, res: Response) {
   })
 }
 
-export async function getCampgroundById(req: Request, res: Response) {
-  const { id } = req.params
-  try {
-    const campground = await Campground.findById(id)
-    const populateReviews = await campground.populate({
-      path: "reviews",
-      populate: { path: "author" },
-    })
-    const populateAuthor = await populateReviews.populate("author")
-
-    res.send(populateAuthor)
-  } catch (e) {
-    throw new ExpressError("Campground not found", 404)
-  }
-}
-
 export async function createCampground(req: Request, res: Response) {
   const geoData = await geocoder
     .forwardGeocode({
@@ -54,23 +39,33 @@ export async function createCampground(req: Request, res: Response) {
   res.send(campground)
 }
 
+export async function getCampgroundById(req: Request, res: Response) {
+  try {
+    const campground = await Campground.findById(getParamsId(req))
+    const populateReviews = await campground.populate({
+      path: "reviews",
+      populate: { path: "author" },
+    })
+    res.send(await populateReviews.populate("author"))
+  } catch (e) {
+    throw new ExpressError("Campground not found", 404)
+  }
+}
+
 export async function updateCampground(req: Request, res: Response) {
-  const { id } = req.params
   const geoData = await geocoder
     .forwardGeocode({
       query: req.body.location,
     })
     .send()
   req.body.geometry = geoData.body.features[0].geometry
-  await Campground.findByIdAndUpdate(id, req.body, {
-    runValidators: true,
+  await Campground.findByIdAndUpdate(getParamsId(req), req.body, {
     new: true,
   })
-  res.send("Campground updated")
+  res.json("Campground updated successfully")
 }
 
 export async function deleteCampground(req: Request, res: Response) {
-  const { id } = req.params
-  await Campground.findByIdAndDelete(id)
-  res.send("Campground deleted")
+  await Campground.findByIdAndDelete(getParamsId(req))
+  res.json("Campground deleted successfully")
 }
