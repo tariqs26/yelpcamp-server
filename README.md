@@ -2,27 +2,44 @@
 
 REST API for campgrounds application, built with Node.js, Express, MongoDB and Mongoose.
 
+## Technologies Used:
+
+| Technology                                                                     | Purpose                               |
+| ------------------------------------------------------------------------------ | ------------------------------------- |
+| [Express](http://expressjs.com/)                                               | Web framework                         |
+| [Cors](https://npmjs.com/package/cors)                                         | Cross-origin resource sharing         |
+| [Nodemon](https://npmjs.com/package/nodemon)                                   | Development server                    |
+| [MongoDB](https://mongodb.com/)                                                | Database                              |
+| [Mongoose](https://mongoosejs.com/)                                            | ODM                                   |
+| [Zod](https://zod.dev/)                                                        | Validation Library                    |
+| [Dotenv](https://npmjs.com/package/dotenv)                                     | Environment variables                 |
+| [Passport](http://passportjs.org/)                                             | Authentication                        |
+| [Express-Session](https://npmjs.com/package/express-session)                   | Session management                    |
+| [Helmet](https://helmetjs.github.io/)                                          | Setting security-related HTTP headers |
+| [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Preventing NoSQL injections           |
+| [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Rate limiting                         |
+
 ## Endpoints
 
 ### Campgrounds:
 
-- `GET /campgrounds` - returns all the campgrounds
-- `GET /campgrounds/:id` - returns a single campground
-- `POST /campgrounds` - creates a new campground
-- `PUT /campgrounds/:id` - updates a campground
-- `DELETE /campgrounds/:id` - deletes a campground
+- `GET /campgrounds` - return campgrounds
+- `GET /campgrounds/:id` - return campground by id
+- `POST /campgrounds` - create campground
+- `PUT /campgrounds/:id` - updates campground
+- `DELETE /campgrounds/:id` - delete campground
 
 ### Reviews:
 
-- `POST /campgrounds/:id/reviews` - creates a new review for a campground
-- `DELETE /campgrounds/:id/reviews/:reviewId` - deletes a review for a campground
+- `POST /campgrounds/:id/reviews` - create review for a campground
+- `DELETE /campgrounds/:id/reviews/:reviewId` - delete review for a campground
 
 ### Users:
 
-- `POST /register` - registers a new user
+- `POST /register` - registers user
 - `POST /login` - logs in a user
 - `GET /logout` - logs out a user
-- `GET /getUser` - returns the current user in the session
+- `GET /getUser` - return current user in the session
 
 ## Data Models
 
@@ -74,9 +91,7 @@ const ReviewSchema = new Schema(
       ref: "User",
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 )
 ```
 
@@ -95,44 +110,31 @@ const UserSchema = new Schema({
 })
 ```
 
-## Technologies Used:
+## Installation
 
-| Technology                                                                     | Purpose                        | Description                                                  |
-| ------------------------------------------------------------------------------ | ------------------------------ | ------------------------------------------------------------ |
-| [Node.js](https://nodejs.org/en/)                                              | JavaScript runtime environment | Used for running the server                                  |
-| [Nodemon](https://npmjs.com/package/nodemon)                                   | Development server             | Used for running the server in development                   |
-| [Cors](https://npmjs.com/package/cors)                                         | Cross-origin resource sharing  | Used for allowing cross-origin requests                      |
-| [Express](http://expressjs.com/)                                               | Web framework                  | Used for creating the RESTful API                            |
-| [MongoDB](https://mongodb.com/)                                                | Database                       | NoSQL database, used for storing the data                    |
-| [Mongoose](https://mongoosejs.com/)                                            | MongoDB object modeling        | ODM, used for the seamless creation of models                |
-| [Zod](https://zod.dev/)                                                        | Validation Library             |
-| [Dotenv](https://npmjs.com/package/dotenv)                                     | Environment variables          | Used for storing environment variables                       |
-| [Passport](http://passportjs.org/)                                             | Authentication                 | Used for authentication                                      |
-| [Express-Session](https://npmjs.com/package/express-session)                   | Session management             | Used for managing sessions                                   |
-| [Helmet](https://helmetjs.github.io/)                                          | Security                       | Used for setting security-related HTTP headers               |
-| [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Security                       | Used for sanitizing user input against NoSQL query injection |
-| [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Security                       | Used for limiting repeated requests to public APIs           |
-| [Railway](https://railway.app/)                                                | Deployment                     | Used for deploying the server to the cloud                   |
+### Install dependencies:
 
-## Getting Started:
+`npm i`
 
-`npm i` - Installs the dependencies
+### Configure environment variables:
+
+```bash
+DB_URL # MongoDB connection string
+SECRET # Secret used for signing session cookie
+MAPBOX_TOKEN # Mapbox API token
+CLIENT_ORIGIN # The origin of the client, used for CORS
+# Note: To use a non-https origin,remove the `secure` option from the cookie session
+```
 
 ## Available Scripts:
 
-| Script          | Description                                                 |
-| --------------- | ----------------------------------------------------------- |
-| `npm run dev`   | Runs the server in development mode (http://localhost:3000) |
-| `npm run build` | Builds the server for production mode                       |
-| `npm start`     | Runs the server in production mode                          |
-| `npm run seed`  | Seeds the database with sample data                         |
+| Script          | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| `npm run dev`   | Run the server in development mode (http://localhost:3000) |
+| `npm run build` | Build the server for production mode                       |
+| `npm start`     | Run the server in production mode                          |
+| `npm run seed`  | Seed the database with sample data                         |
 
-## Environment Variables:
+## Contributing
 
-```bash
-DB_URL # MongoDB connection string, can be local or remote
-SECRET # Secret used for signing the session cookie
-MAPBOX_TOKEN # Mapbox API token, used for displaying the map on the frontend
-CLIENT_ORIGIN # The origin of the client, used for CORS, can be local or remote
-# Note: In order to use a non https origin, you need to remove the `secure` option from the cookie session
-```
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
