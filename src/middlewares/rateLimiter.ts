@@ -5,7 +5,7 @@ export const accountCreationLimiter = rateLimit({
   max: 5, // start blocking after 5 requests
   skipFailedRequests: true,
   message:
-    'Too many accounts created from this IP, please try again after a day',
+    'Too many accounts created, please try again after a day',
 });
 
 export const createCampgroundLimiter = rateLimit({
@@ -13,5 +13,5 @@ export const createCampgroundLimiter = rateLimit({
   max: 5, // start blocking after 5 requests
   skipFailedRequests: true,
   message:
-    'Too many campgrounds created from this IP, please try again after an hour',
+    'Too many campgrounds created, please try again after an hour',
 });
