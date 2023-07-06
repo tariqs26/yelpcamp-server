@@ -11,5 +11,7 @@ export const handleErrors = (
   res: Response,
   __: NextFunction
 ) => {
-  res.status(err.status || 500).send(err.message)
+  res.status(err.status || 500).json({
+    message: err.message || "Something went wrong",
+  })
 }

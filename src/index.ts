@@ -32,7 +32,7 @@ db.once("open", () => {
 const app = express()
 
 // encoding incoming data
-app.use(express.json())
+app.use(express.json({ limit: "10kb" }))
 app.use(express.urlencoded({ extended: true }))
 
 // Set up CORS
@@ -90,9 +90,8 @@ app.all("*", (_, __, next) => {
 
 app.use(handleErrors)
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
-// Enable server
 app.listen(port, () => {
   console.log(`🗲 Server is running on port ${port}`)
 })
