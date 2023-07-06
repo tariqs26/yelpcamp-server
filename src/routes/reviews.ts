@@ -1,15 +1,16 @@
 import { Router } from "express"
-import validateReview from "../middlewares/validateReview.js"
-import userLoggedIn from "../middlewares/userLoggedIn.js"
-import * as controller from "../controllers/reviews.js"
-import { catchAsync } from "../lib/utils.js"
+import validate from "../middlewares/validate"
+import { reviewSchema } from "../schemas"
+import userLoggedIn from "../middlewares/userLoggedIn"
+import * as controller from "../controllers/reviews"
+import { catchAsync } from "../lib/utils"
 
 const router = Router({ mergeParams: true })
 
 router.post(
   "/",
   userLoggedIn,
-  validateReview,
+  validate(reviewSchema),
   catchAsync(controller.createReview)
 )
 

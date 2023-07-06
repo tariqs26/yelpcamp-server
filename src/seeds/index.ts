@@ -1,8 +1,8 @@
 import mongoose, { connect, set } from "mongoose"
 import dotenv from "dotenv"
-import Campground from "../models/campground.js"
-import { cities } from "./cities.js"
-import { descriptors, places, descriptions } from "./seedHelpers.js"
+import Campground from "../models/campground"
+import { cities } from "./cities"
+import { descriptors, places, descriptions } from "./seedHelpers"
 
 if (process.env.NODE_ENV !== "production") dotenv.config()
 

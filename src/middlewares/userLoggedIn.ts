@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express"
-import ExpressError from "../lib/ExpressError.js"
+import ExpressError from "../lib/ExpressError"
 
 export default function userLoggedIn(
   req: Request,

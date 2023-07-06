@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose"
-import Review from "./review.js"
+import Review from "./review"
 
 const CampgroundSchema = new Schema(
   {
