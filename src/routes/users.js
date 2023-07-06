@@ -3,10 +3,10 @@ import passport from "passport"
 import { accountCreationLimiter } from "../middlewares/rateLimiter.js"
 import userLoggedIn from "../middlewares/userLoggedIn.js"
 import userAuthorized from "../middlewares/userAuthorized.js"
-import UsersController from "../controllers/users.js"
+import * as controller from "../controllers/users.js"
 import catchAsync from "../utils/catchAsync.js"
 
-const [router, controller] = [Router(), new UsersController()]
+const router = Router()
 
 router.post(
   "/register",
