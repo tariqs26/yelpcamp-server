@@ -112,9 +112,9 @@ const UserSchema = new Schema({
 | [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Security                       | Used for limiting repeated requests to public APIs           |
 | [Railway](https://railway.app/)                                                | Deployment                     | Used for deploying the server to the cloud                   |
 
-### `npm install`
+## Getting Started:
 
-- Installs all the dependencies
+`npm i` - Installs the dependencies
 
 ## Available Scripts:
 
