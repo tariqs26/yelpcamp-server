@@ -1,6 +1,8 @@
-# YelpCamp RESTful API
+# YelpCamp API
 
-## API Endpoints
+REST API for campgrounds application, built with Node.js, Express, MongoDB and Mongoose.
+
+## Endpoints
 
 ### Campgrounds:
 
