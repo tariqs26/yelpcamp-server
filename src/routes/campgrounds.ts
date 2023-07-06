@@ -1,10 +1,11 @@
 import { Router } from "express"
-import { createCampgroundLimiter } from "../middlewares/rateLimiter.js"
-import userLoggedIn from "../middlewares/userLoggedIn.js"
-import userAuthorized from "../middlewares/userAuthorized.js"
-import validateCampground from "../middlewares/validateCampground.js"
-import * as controller from "../controllers/campgrounds.js"
-import { catchAsync } from "../lib/utils.js"
+import { createCampgroundLimiter } from "../middlewares/rateLimiter"
+import userLoggedIn from "../middlewares/userLoggedIn"
+import userAuthorized from "../middlewares/userAuthorized"
+import validate from "../middlewares/validate"
+import { campgroundSchema } from "../schemas"
+import * as controller from "../controllers/campgrounds"
+import { catchAsync } from "../lib/utils"
 
 const router = Router()
 
@@ -13,7 +14,7 @@ router
   .get(catchAsync(controller.getCampgrounds))
   .post(
     userLoggedIn,
-    validateCampground,
+    validate(campgroundSchema),
     createCampgroundLimiter,
     catchAsync(controller.createCampground)
   )
@@ -24,7 +25,7 @@ router
   .put(
     userLoggedIn,
     userAuthorized,
-    validateCampground,
+    validate(campgroundSchema),
     catchAsync(controller.updateCampground)
   )
   .delete(userLoggedIn, userAuthorized, catchAsync(controller.deleteCampground))

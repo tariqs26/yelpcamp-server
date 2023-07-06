@@ -6,8 +6,8 @@ type User = {
 }
 
 declare module "express" {
-  interface TokenRequest extends Request {
-    user?: User | null
+  interface Request {
+    user?: User
   }
 }
 
