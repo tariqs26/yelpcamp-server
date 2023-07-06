@@ -118,12 +118,12 @@ const UserSchema = new Schema({
 
 ## Available Scripts:
 
-| Script          | Description                                                                                          |
-| --------------- | ---------------------------------------------------------------------------------------------------- |
-| `npm run dev`   | Runs the server in development mode, using nodemon to watch for file changes (http://localhost:3000) |
-| `npm run build` | Builds the server for production mode                                                                |
-| `npm start`     | Runs the server in production mode                                                                   |
-| `npm run seed`  | Seeds the database with sample data                                                                  |
+| Script          | Description                                                 |
+| --------------- | ----------------------------------------------------------- |
+| `npm run dev`   | Runs the server in development mode (http://localhost:3000) |
+| `npm run build` | Builds the server for production mode                       |
+| `npm start`     | Runs the server in production mode                          |
+| `npm run seed`  | Seeds the database with sample data                         |
 
 ## Environment Variables:
 
