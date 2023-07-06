@@ -10,15 +10,7 @@ export async function register(req: Request, res: Response) {
     const registeredUser = await User.register(user, password)
     res.send(registeredUser)
   } catch (e) {
-    if (e instanceof MongooseError) {
-      throw new ExpressError(e.message, 400)
-    }
-    if (e.keyValue)
-      throw new ExpressError(
-        "A user with the given email is already registered",
-        400
-      )
-    res.status(400).send(e.message)
+    if (e instanceof MongooseError) throw new ExpressError(e.message, 400)
   }
 }
 
