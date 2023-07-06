@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "composite": true,
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "target": "ES2016",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "commonjs" /* Specify what module code is generated. */,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictPropertyInitialization": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/*.d.ts"
+  ]
+}
