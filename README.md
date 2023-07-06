@@ -75,7 +75,6 @@ const ReviewSchema = new Schema(
   },
   { timestamps: true }
 )
-
 ```
 
 ### User:
@@ -104,10 +103,10 @@ npm i
 ### Configure environment variables:
 
 ```bash
-DB_URL # MongoDB connection string
-SECRET # Secret used for signing session cookie
-MAPBOX_TOKEN # Mapbox API token
-CLIENT_ORIGIN # Client url, used for CORS
+DB_URL=        # MongoDB connection string
+SECRET=        # Secret used for signing session cookie
+MAPBOX_TOKEN=  # Mapbox API token
+CLIENT_ORIGIN= # Client url, used for CORS
 # Note: To use a non-https origin,remove the `secure` option from the cookie session
 ```
 
