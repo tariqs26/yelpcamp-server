@@ -4,7 +4,7 @@ import { accountCreationLimiter } from "../middlewares/rateLimiter.js"
 import userLoggedIn from "../middlewares/userLoggedIn.js"
 import userAuthorized from "../middlewares/userAuthorized.js"
 import * as controller from "../controllers/users.js"
-import catchAsync from "../utils/catchAsync.js"
+import { catchAsync } from "../lib/utils.js"
 
 const router = Router()
 

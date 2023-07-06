@@ -4,7 +4,7 @@ import userLoggedIn from "../middlewares/userLoggedIn.js"
 import userAuthorized from "../middlewares/userAuthorized.js"
 import validateCampground from "../middlewares/validateCampground.js"
 import * as controller from "../controllers/campgrounds.js"
-import catchAsync from "../utils/catchAsync.js"
+import { catchAsync } from "../lib/utils.js"
 
 const router = Router()
 
