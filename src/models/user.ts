@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
+import passportLocalMongoose from 'passport-local-mongoose';
 import Campground from './campground.js';
 import Review from './review.js';
-import passportLocalMongoose from 'passport-local-mongoose';
 
 const UserSchema = new Schema({
   email: {
