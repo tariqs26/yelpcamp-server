@@ -8,8 +8,7 @@ export async function register(req: Request, res: Response) {
   try {
     const { email, username, password } = req.body
     const user = new User({ email, username })
-    const registeredUser = await User.register(user, password)
-    res.send(registeredUser)
+    res.send(await User.register(user, password))
   } catch (e) {
     if (e instanceof MongooseError) throw new ExpressError(e.message, 400)
   }
