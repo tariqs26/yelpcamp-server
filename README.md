@@ -2,7 +2,7 @@
 
 REST API for campgrounds application, built with Node.js, Express, MongoDB and Mongoose.
 
-## Technologies Used:
+## Technologies Used
 
 | Technology                                                                     | Purpose                               |
 | ------------------------------------------------------------------------------ | ------------------------------------- |
@@ -21,7 +21,7 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 
 ## Endpoints
 
-### Campgrounds:
+### Campgrounds
 
 - `GET /campgrounds` - return campgrounds
 - `GET /campgrounds/:id` - return campground by id
@@ -29,12 +29,12 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 - `PUT /campgrounds/:id` - updates campground
 - `DELETE /campgrounds/:id` - delete campground
 
-### Reviews:
+### Reviews
 
 - `POST /campgrounds/:id/reviews` - create review for a campground
 - `DELETE /campgrounds/:id/reviews/:reviewId` - delete review for a campground
 
-### Users:
+### Users
 
 - `POST /register` - registers user
 - `POST /login` - logs in a user
@@ -43,7 +43,7 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 
 ## Data Models
 
-### Campground:
+### Campground
 
 ```ts
 const CampgroundSchema = new Schema(
@@ -64,7 +64,7 @@ const CampgroundSchema = new Schema(
 )
 ```
 
-### Review:
+### Review
 
 ```ts
 const ReviewSchema = new Schema(
@@ -77,7 +77,7 @@ const ReviewSchema = new Schema(
 )
 ```
 
-### User:
+### User
 
 ```ts
 const UserSchema = new Schema({
@@ -94,13 +94,13 @@ const UserSchema = new Schema({
 
 ## Installation
 
-### Install dependencies:
+### Install dependencies
 
 ```bash
 npm i
 ```
 
-### Configure environment variables:
+### Configure environment variables
 
 ```bash
 DB_URL=        # MongoDB connection string
@@ -110,7 +110,7 @@ CLIENT_ORIGIN= # Client url, used for CORS
 # Note: To use a non-https origin,remove the `secure` option from the cookie session
 ```
 
-## Available Scripts:
+## Available Scripts
 
 | Script          | Description                                                |
 | --------------- | ---------------------------------------------------------- |
