@@ -56,10 +56,10 @@ app.use(
     saveUninitialized: true,
     name: "apple touch icon",
     cookie: {
-      secure: true, // only set cookies over https (comment out when testing)
+      secure: true,
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // cookie will expire in 7 days
       maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: "none", // (comment out when testing)
+      sameSite: "none",
       httpOnly: false,
     },
   })
@@ -77,7 +77,6 @@ app.use("/", userRoutes)
 app.all("*", (_, __, next) => {
   next(new ExpressError("Page not found", 404))
 })
-
 app.use(handleErrors)
 
 const port = env.PORT || 5000
