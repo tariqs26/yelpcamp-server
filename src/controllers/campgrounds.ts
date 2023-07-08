@@ -1,13 +1,11 @@
 import type { Request, Response } from "express"
-import dotenv from "dotenv"
-import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js"
-import ExpressError from "../lib/ExpressError.js"
-import Campground from "../models/campground.js"
-import { getParamsId } from "../lib/utils.js"
+import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding"
+import { env } from "../lib/env"
+import ExpressError from "../lib/ExpressError"
+import Campground from "../models/campground"
+import { getParamsId } from "../lib/utils"
 
-if (process.env.NODE_ENV !== "production") dotenv.config()
-
-const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
+const geocoder = mbxGeocoding({ accessToken: env.MAPBOX_TOKEN })
 
 export async function getCampgrounds(req: Request, res: Response) {
   const { page = 1 } = req.query

@@ -1,14 +1,11 @@
 import mongoose, { connect, set } from "mongoose"
-import dotenv from "dotenv"
+import { env } from "../lib/env"
 import Campground from "../models/campground"
 import { cities } from "./cities"
 import { descriptors, places, descriptions } from "./seedHelpers"
 
-if (process.env.NODE_ENV !== "production") dotenv.config()
-
 set("strictQuery", true)
-connect(process.env.DB_URL || "mongodb://localhost:27017/yelp-camp")
-
+connect(env.DATABASE_URL)
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "connection error:"))
 db.once("open", () => {
