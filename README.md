@@ -116,6 +116,7 @@ CLIENT_ORIGIN= # Client url, used for CORS
 | --------------- | ---------------------------------------------------------- |
 | `npm run dev`   | Run the server in development mode (http://localhost:3000) |
 | `npm run build` | Build the server for production mode                       |
+| `npm run clean` | Clean the build directory                                  |
 | `npm start`     | Run the server in production mode                          |
 | `npm run seed`  | Seed the database with sample data                         |
 
