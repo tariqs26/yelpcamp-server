@@ -23,7 +23,7 @@ router.post(
   catchAsync(controller.login)
 )
 
-router.get("/logout", controller.logout)
+router.post("/logout", controller.logout)
 
 router.get("/getUser", catchAsync(controller.login))
 
