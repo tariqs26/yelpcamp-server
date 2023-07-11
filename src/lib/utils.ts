@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express"
-import ExpressError from "./ExpressError"
+import ExpressError from "./express-error"
 
 export const catchAsync =
   (fn: Function) => (req: Request, res: Response, next: NextFunction) => {
