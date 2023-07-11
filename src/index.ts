@@ -10,11 +10,11 @@ import { Strategy } from "passport-local"
 
 import { env } from "./lib/env"
 import ExpressError from "./lib/express-error"
-import { handleErrors } from "./lib/utils"
 import campgroundRoutes from "./routers/campgrounds"
 import reviewRoutes from "./routers/reviews"
 import userRoutes from "./routers/users"
 import User from "./models/user"
+import handleErrors from "./middlewares/handle-errors"
 
 // Set up mongoose connection
 set("strictQuery", true)
