@@ -1,10 +1,10 @@
 import { Router } from "express"
 import passport from "passport"
-import { registerAccountLimiter } from "../middlewares/rateLimiter"
+import { registerAccountLimiter } from "../middlewares/rate-limiter"
 import validate from "../middlewares/validate"
 import { userSchema } from "../schemas"
-import userLoggedIn from "../middlewares/userLoggedIn"
-import userAuthorized from "../middlewares/userAuthorized"
+import userLoggedIn from "../middlewares/user-authenticated"
+import userAuthorized from "../middlewares/user-authorized"
 import * as controller from "../controllers/users"
 import { catchAsync } from "../lib/utils"
 
