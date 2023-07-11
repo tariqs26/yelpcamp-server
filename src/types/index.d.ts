@@ -1,8 +1,8 @@
-import "express"
+import type { User } from "express"
 
 declare module "express" {
-  interface Request {
-    user?: {
+  export interface Request {
+    user?: User & {
       _id: string
       isAdmin: boolean
     }
