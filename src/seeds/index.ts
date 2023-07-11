@@ -1,8 +1,8 @@
 import mongoose, { connect, set } from "mongoose"
 import { env } from "../lib/env"
 import Campground from "../models/campground"
-import { cities } from "./cities"
-import { descriptors, places, descriptions } from "./seedHelpers"
+import cities from "./cities.json"
+import { descriptors, places, descriptions } from "./seed-helpers.json"
 
 set("strictQuery", true)
 connect(env.DATABASE_URL)
