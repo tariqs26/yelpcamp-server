@@ -1,6 +1,6 @@
 import { Router } from "express"
 import passport from "passport"
-import { accountCreationLimiter } from "../middlewares/rateLimiter"
+import { registerAccountLimiter } from "../middlewares/rateLimiter"
 import validate from "../middlewares/validate"
 import { userSchema } from "../schemas"
 import userLoggedIn from "../middlewares/userLoggedIn"
@@ -12,7 +12,7 @@ const router = Router()
 
 router.post(
   "/register",
-  accountCreationLimiter,
+  registerAccountLimiter,
   validate(userSchema),
   catchAsync(controller.register)
 )
