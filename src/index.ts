@@ -9,7 +9,7 @@ import passport from "passport"
 import { Strategy } from "passport-local"
 
 import { env } from "./lib/env"
-import ExpressError from "./lib/ExpressError"
+import ExpressError from "./lib/express-error"
 import { handleErrors } from "./lib/utils"
 import campgroundRoutes from "./routers/campgrounds"
 import reviewRoutes from "./routers/reviews"

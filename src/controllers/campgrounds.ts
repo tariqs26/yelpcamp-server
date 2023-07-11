@@ -1,7 +1,7 @@
 import type { Request, Response } from "express"
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding"
 import { env } from "../lib/env"
-import ExpressError from "../lib/ExpressError"
+import ExpressError from "../lib/express-error"
 import Campground from "../models/campground"
 import { getParamsId } from "../lib/utils"
 
@@ -57,7 +57,7 @@ export async function updateCampground(req: Request, res: Response) {
     getParamsId(req),
     {
       ...req.body,
-      geometry: body.features[0].geometry,
+      geometry: body.features[0]?.geometry,
     },
     { new: true }
   )

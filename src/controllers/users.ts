@@ -1,6 +1,6 @@
 import type { Request, Response } from "express"
 import User from "../models/user"
-import ExpressError from "../lib/ExpressError"
+import ExpressError from "../lib/express-error"
 import { MongooseError } from "mongoose"
 import { getParamsId } from "../lib/utils"
 

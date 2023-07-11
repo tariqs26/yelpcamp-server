@@ -1,7 +1,7 @@
 import type { Request, Response } from "express"
 import Campground from "../models/campground"
 import Review from "../models/review"
-import ExpressError from "../lib/ExpressError"
+import ExpressError from "../lib/express-error"
 import { getParamsId } from "../lib/utils"
 
 export async function createReview(req: Request, res: Response) {

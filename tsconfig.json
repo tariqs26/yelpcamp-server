@@ -11,6 +11,7 @@
     "importHelpers": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true, // proper type check for empty index access
     "strict": true,
     "skipLibCheck": true
   },
