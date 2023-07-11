@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express"
+import type { Request, Response, NextFunction } from "express"
 import ExpressError from "./express-error"
 
 export const catchAsync =
