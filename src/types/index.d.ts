@@ -1,10 +1,11 @@
-import type { User } from "express"
+import express from "express"
 
-declare module "express" {
-  export interface Request {
-    user?: User & {
-      _id: string
+declare global {
+  namespace Express {
+    interface User {
+      username: string
       isAdmin: boolean
+      _id: number
     }
   }
 }
