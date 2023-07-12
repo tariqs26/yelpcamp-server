@@ -30,5 +30,5 @@ export async function deleteReview(req: Request, res: Response) {
     }),
     Review.findByIdAndDelete(reviewId),
   ])
-  res.send("Review deleted")
+  res.json("Review deleted successfully")
 }
