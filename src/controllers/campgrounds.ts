@@ -26,7 +26,7 @@ export async function createCampground(req: Request, res: Response) {
   const geoData = await geocoder
     .forwardGeocode({ query: req.body.location })
     .send()
-
+    
   if (!geoData.body.features[0])
     throw new ExpressError("Location not found", 404)
 
@@ -34,7 +34,6 @@ export async function createCampground(req: Request, res: Response) {
   campground.geometry = geoData.body.features[0].geometry
   campground.author = req.user?._id
   await campground.save()
-
   res.send(campground)
 }
 
