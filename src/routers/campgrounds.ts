@@ -3,7 +3,7 @@ import { createCampgroundLimiter } from "../middlewares/rate-limiter"
 import userAuthenticated from "../middlewares/user-authenticated"
 import userAuthorized from "../middlewares/user-authorized"
 import validate from "../middlewares/validate"
-import { campgroundSchema } from "../schemas"
+import { campgroundSchema } from "../lib/validations"
 import * as controller from "../controllers/campgrounds"
 import { catchAsync } from "../lib/utils"
 
@@ -28,6 +28,10 @@ router
     validate(campgroundSchema),
     catchAsync(controller.updateCampground)
   )
-  .delete(userAuthenticated, userAuthorized, catchAsync(controller.deleteCampground))
+  .delete(
+    userAuthenticated,
+    userAuthorized,
+    catchAsync(controller.deleteCampground)
+  )
 
 export default router

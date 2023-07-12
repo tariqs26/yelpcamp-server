@@ -1,6 +1,6 @@
 import { Router } from "express"
 import validate from "../middlewares/validate"
-import { reviewSchema } from "../schemas"
+import { reviewSchema } from "../lib/validations"
 import userAuthenticated from "../middlewares/user-authenticated"
 import * as controller from "../controllers/reviews"
 import { catchAsync } from "../lib/utils"
