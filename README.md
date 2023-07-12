@@ -38,7 +38,7 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 
 - `POST /register` - registers user
 - `POST /login` - logs in a user
-- `GET /logout` - logs out a user
+- `POST /logout` - logs out a user
 - `GET /getUser` - return current user in the session
 
 ## Data Models
