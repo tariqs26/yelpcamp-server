@@ -9,7 +9,8 @@ export default async function userAuthorized(
 ) {
   const { id } = req.params
   const campground = await Campground.findById(id)
+  if (!campground) return next(new ExpressError("Campground not found", 404))
   if (!campground.author.equals(req.user?._id) && !req.user?.isAdmin)
-    next(new ExpressError("You do not have permission to do that", 403))
+    return next(new ExpressError("You do not have permission to do that", 403))
   next()
 }
