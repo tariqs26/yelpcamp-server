@@ -2,7 +2,6 @@ import { Router } from "express"
 import passport from "passport"
 import { registerAccountLimiter } from "../middlewares/rate-limiter"
 import userLoggedIn from "../middlewares/user-authenticated"
-import userAuthorized from "../middlewares/user-authorized"
 import validate from "../middlewares/validate"
 import { userSchema } from "../lib/validations"
 import { catchAsync } from "../lib/utils"
@@ -28,9 +27,8 @@ router.post("/logout", controller.logout)
 router.get("/getUser", catchAsync(controller.login))
 
 router.delete(
-  "/deleteAccount/:id",
+  "/deleteAccount",
   userLoggedIn,
-  userAuthorized,
   catchAsync(controller.deleteAccount)
 )
 
