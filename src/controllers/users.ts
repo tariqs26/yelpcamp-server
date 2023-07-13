@@ -18,5 +18,5 @@ export async function logout(req: Request, res: Response) {
 
 export async function deleteAccount(req: Request, res: Response) {
   await User.findByIdAndDelete(getParamsId(req))
-  req.logout(() => res.send("Logged out"))
+  await logout(req, res)
 }
