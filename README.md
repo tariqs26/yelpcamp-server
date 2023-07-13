@@ -22,9 +22,9 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 
 ## Documentation
 
-API documentation is available at [https://yelpcamp-api.herokuapp.com/api-docs](https://yelpcamp-api.herokuapp.com/api-docs)
+API documentation is available at [https://yc-server8080.onrender.com/api-docs](https://yc-server8080.onrender.com/api-docs)
 
-## Endpoints
+## EndpointsF
 
 ### Campgrounds
 
