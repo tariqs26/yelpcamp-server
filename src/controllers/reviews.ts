@@ -1,8 +1,9 @@
 import type { Request, Response } from "express"
+import { getParamsId } from "../lib/utils"
+import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
 import Campground from "../models/campground"
 import Review from "../models/review"
-import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
-import { getParamsId } from "../lib/utils"
+
 
 export async function createReview(req: Request, res: Response) {
   const campground = await Campground.findById(getParamsId(req))

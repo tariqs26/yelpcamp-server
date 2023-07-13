@@ -1,6 +1,6 @@
 import type { Request, Response } from "express"
-import User from "../models/user"
 import { getParamsId } from "../lib/utils"
+import User from "../models/user"
 
 export async function register(req: Request, res: Response) {
   const { email, username, password } = req.body
