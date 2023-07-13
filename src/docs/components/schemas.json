@@ -1,7 +1,7 @@
 {
   "Campground": {
     "type": "object",
-    "required" : ["title", "description", "price", "location", "image"],
+    "required": ["title", "description", "price", "location", "image"],
     "properties": {
       "title": {
         "type": "string",
@@ -12,16 +12,16 @@
         "default": "A beautiful campground in the heart of Denali National Park"
       },
       "price": {
-        "type": "number"
+        "type": "number",
         "default": 40
       },
       "location": {
-        "type": "string"
+        "type": "string",
         "default": "Denali National Park"
       },
       "image": {
         "type": "string",
-        "default" : "https://images.unsplash.com/photo..."
+        "default": "https://images.unsplash.com/photo..."
       }
     }
   },
