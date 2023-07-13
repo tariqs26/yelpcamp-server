@@ -1,0 +1,51 @@
+{
+  "Campground": {
+    "type": "object",
+    "required" : ["title", "description", "price", "location", "image"],
+    "properties": {
+      "title": {
+        "type": "string",
+        "default": "Denali National Park"
+      },
+      "description": {
+        "type": "string",
+        "default": "A beautiful campground in the heart of Denali National Park"
+      },
+      "price": {
+        "type": "number"
+        "default": 40
+      },
+      "location": {
+        "type": "string"
+        "default": "Denali National Park"
+      },
+      "image": {
+        "type": "string",
+        "default" : "https://images.unsplash.com/photo..."
+      }
+    }
+  },
+  "CampgroundResponse": {
+    "type": "object",
+    "properties": {
+      "campgrounds": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Campground"
+        }
+      },
+      "totalPages": {
+        "type": "number",
+        "default": 1
+      }
+    }
+  },
+  "Error": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string"
+      }
+    }
+  }
+}
