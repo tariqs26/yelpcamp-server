@@ -30,8 +30,8 @@ const options: OAS3Options = {
 const specs = swaggerJsdoc(options)
 
 const swaggerDocs = (app: Express) => {
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs))
-  app.get("/docs.json", (_: Request, res: Response) => {
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs))
+  app.get("/api-docs.json", (_: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json")
     res.send(specs)
   })

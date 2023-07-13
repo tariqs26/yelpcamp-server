@@ -18,6 +18,11 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 | [Helmet](https://helmetjs.github.io/)                                          | Setting security-related HTTP headers |
 | [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Preventing NoSQL injections           |
 | [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Rate limiting                         |
+| [Swagger](https://swagger.io/)                                                 | API documentation                     |
+
+## Documentation
+
+API documentation is available at [https://yelpcamp-api.herokuapp.com/api-docs](https://yelpcamp-api.herokuapp.com/api-docs)
 
 ## Endpoints
 
