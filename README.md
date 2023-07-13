@@ -28,23 +28,29 @@ API documentation is available at [https://yc-server8080.onrender.com/api-docs](
 
 ### Campgrounds
 
-- `GET /campgrounds` - return campgrounds
-- `GET /campgrounds/:id` - return campground by id
-- `POST /campgrounds` - create campground
-- `PUT /campgrounds/:id` - updates campground
-- `DELETE /campgrounds/:id` - delete campground
+| Endpoint                  | Description             |
+| ------------------------- | ----------------------- |
+| `GET /campgrounds`        | return campgrounds      |
+| `POST /campgrounds`       | create campground       |
+| `GET /campgrounds/:id`    | return campground by id |
+| `PUT /campgrounds/:id`    | update campground by id |
+| `DELETE /campgrounds/:id` | delete campground by id |
 
 ### Reviews
 
-- `POST /campgrounds/:id/reviews` - create review for a campground
-- `DELETE /campgrounds/:id/reviews/:reviewId` - delete review for a campground
+| Endpoint                                | Description                          |
+| --------------------------------------- | ------------------------------------ |
+| `POST /campgrounds/:cid/reviews`        | create review for a campground       |
+| `DELETE /campgrounds/:cid/reviews/:rId` | delete review for a campground by id |
 
 ### Users
 
-- `POST /register` - registers user
-- `POST /login` - logs in a user
-- `POST /logout` - logs out a user
-- `GET /getUser` - return current user in the session
+| Endpoint         | Description                        |
+| ---------------- | ---------------------------------- |
+| `POST /register` | register a user                    |
+| `POST /login`    | login a user                       |
+| `POST /logout`   | logout a user                      |
+| `GET /getUser`   | return current user in the session |
 
 ## Data Models
 
