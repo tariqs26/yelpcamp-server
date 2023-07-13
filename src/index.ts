@@ -15,6 +15,7 @@ import reviewRoutes from "./routers/reviews"
 import userRoutes from "./routers/users"
 import User from "./models/user"
 import handleErrors from "./middlewares/handle-errors"
+import swaggerDocs from "./lib/swagger"
 
 // Set up mongoose connection
 set("strictQuery", true)
@@ -73,6 +74,8 @@ passport.deserializeUser(User.deserializeUser())
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
 app.use("/", userRoutes)
+swaggerDocs(app)
+
 
 app.all("*", (_, __, next) => {
   next(new ExpressError("Page not found", 404))
@@ -83,7 +86,8 @@ const port = env.PORT || 5000
 
 app
   .listen(port, () => {
-    console.log(`🗲 Server is running on port ${port}`)
+    console.log(`🗲 Server is running on http://localhost:${port}`)
+    console.log(`📑 Swagger docs is running on http://localhost:${port}/docs`)
   })
   .on("error", (e) => {
     console.log("Server error:", e.message)

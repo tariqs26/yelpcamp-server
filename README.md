@@ -18,8 +18,13 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 | [Helmet](https://helmetjs.github.io/)                                          | Setting security-related HTTP headers |
 | [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Preventing NoSQL injections           |
 | [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Rate limiting                         |
+| [Swagger](https://swagger.io/)                                                 | API documentation                     |
 
-## Endpoints
+## Documentation
+
+API documentation is available at [https://yc-server8080.onrender.com/api-docs](https://yc-server8080.onrender.com/api-docs)
+
+## EndpointsF
 
 ### Campgrounds
 

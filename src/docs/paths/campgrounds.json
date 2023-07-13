@@ -1,0 +1,63 @@
+{
+  "/campgrounds": {
+    "get": {
+      "tags": ["Campgrounds"],
+      "summary": "Get all campgrounds",
+      "description": "Get all campgrounds paginated by 10 items per page",
+      "parameters": [
+        {
+          "in": "query",
+          "name": "page",
+          "required" : false,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampgroundResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/campground/{id}": {
+    "get": {
+      "tags": ["Campgrounds"],
+      "summary": "Get a campground by id",
+      "description": "Get a campground by id",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required" : true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "A campground",
+          "content" : {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Campground"
+              }
+            }
+          }
+        },
+        "404": {
+          "$ref": "#/components/responses/404NotFound"
+        }
+      }
+    }
+  }
+}
