@@ -27,7 +27,7 @@ export async function createCampground(req: Request, res: Response) {
     .forwardGeocode({ query: req.body.location })
     .send()
 
-  if (!geoData.body.features[0]) throw new NotFoundError("Location ")
+  if (!geoData.body.features[0]) throw new NotFoundError("Location")
 
   const campground = new Campground(req.body)
   campground.geometry = geoData.body.features[0].geometry

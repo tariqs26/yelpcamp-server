@@ -21,6 +21,11 @@ export class NotAuthorizedError extends ExpressError {
 }
 
 export class NotFoundError extends ExpressError {
+  /**
+   * @description
+   * 404 Not Found
+   * @param message - Model name
+   */
   constructor(message: string) {
     super(message + " not found", 404)
   }
