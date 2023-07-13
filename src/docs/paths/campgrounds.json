@@ -26,6 +26,47 @@
           }
         }
       }
+    },
+    "post": {
+      "tags": ["Campgrounds"],
+      "summary": "Create a new campground",
+      "description": "Create a new campground",
+      "requestBody": {
+        "description": "Campground object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Campground"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "A campground",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Campground"
+              }
+            }
+          }
+        },
+        "401": {
+          "$ref": "#/components/responses/401"
+        },
+        "404": {
+          "description": "Location not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "default": "Location not found"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "/campground/{id}": {
@@ -55,7 +96,90 @@
           }
         },
         "404": {
-          "$ref": "#/components/responses/404NotFound"
+          "$ref": "#/components/responses/404"
+        }
+      }
+    },
+    "put": {
+      "tags": ["Campgrounds"],
+      "summary": "Update a campground by id",
+      "description": "Update a campground by id",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "requestBody": {
+        "description": "Campground object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Campground"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "A campground",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Campground"
+              }
+            }
+          }
+        },
+        "401": {
+          "$ref": "#/components/responses/401"
+        },
+        "403": {
+          "$ref": "#/components/responses/403"
+        },
+        "404": {
+          "$ref": "#/components/responses/404"
+        }
+      }
+    },
+    "delete": {
+      "tags": ["Campgrounds"],
+      "summary": "Delete a campground by id",
+      "description": "Delete a campground by id",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "default": "Campground deleted successfully"
+              }
+            }
+          }
+        },
+        "401": {
+          "$ref": "#/components/responses/401"
+        },
+        "403": {
+          "$ref": "#/components/responses/403"
+        },
+        "404": {
+          "$ref": "#/components/responses/404"
         }
       }
     }

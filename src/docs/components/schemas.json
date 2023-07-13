@@ -39,13 +39,5 @@
         "default": 1
       }
     }
-  },
-  "Error": {
-    "type": "object",
-    "properties": {
-      "message": {
-        "type": "string"
-      }
-    }
   }
 }

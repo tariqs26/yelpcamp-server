@@ -1,10 +1,33 @@
 {
-  "404NotFound": {
+  "401": {
+    "description": "The request requires user authentication.",
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "string",
+          "default": "Please login to access this feature"
+        }
+      }
+    }
+  },
+  "403": {
+    "description": "The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource.",
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "string",
+          "default": "You are not authorized to access this feature"
+        }
+      }
+    }
+  },
+  "404": {
     "description": "The requested resource was not found.",
     "content": {
       "application/json": {
         "schema": {
-          "$ref": "#/components/schemas/Error"
+          "type": "string",
+          "default": "Not found"
         }
       }
     }
