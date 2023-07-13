@@ -1,12 +1,12 @@
 import { Router } from "express"
 import passport from "passport"
 import { registerAccountLimiter } from "../middlewares/rate-limiter"
-import validate from "../middlewares/validate"
-import { userSchema } from "../lib/validations"
 import userLoggedIn from "../middlewares/user-authenticated"
 import userAuthorized from "../middlewares/user-authorized"
-import * as controller from "../controllers/users"
+import validate from "../middlewares/validate"
+import { userSchema } from "../lib/validations"
 import { catchAsync } from "../lib/utils"
+import * as controller from "../controllers/users"
 
 const router = Router()
 
