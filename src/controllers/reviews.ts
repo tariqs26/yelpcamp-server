@@ -1,12 +1,12 @@
 import type { Request, Response } from "express"
 import Campground from "../models/campground"
 import Review from "../models/review"
-import ExpressError from "../lib/express-error"
+import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
 import { getParamsId } from "../lib/utils"
 
 export async function createReview(req: Request, res: Response) {
   const campground = await Campground.findById(getParamsId(req))
-  if (!campground) throw new ExpressError("Campground not found", 404)
+  if (!campground) throw new NotFoundError("Campground")
   const review = new Review(req.body)
   review.author = req.user?._id
   campground.reviews.push(review)
@@ -17,13 +17,8 @@ export async function createReview(req: Request, res: Response) {
 export async function deleteReview(req: Request, res: Response) {
   const { id, reviewId } = req.params
   const review = await Review.findById(reviewId)
-  if (!review) throw new ExpressError("Review not found", 404)
-  if (!review.author.equals(req.user?._id)) {
-    throw new ExpressError(
-      "You do not have permission to delete this review",
-      401
-    )
-  }
+  if (!review) throw new NotFoundError("Review")
+  if (!review.author.equals(req.user?._id)) throw new NotAuthorizedError()
   await Promise.all([
     Campground.findByIdAndUpdate(id, {
       $pull: { reviews: reviewId },

@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express"
-import ExpressError from "./express-error"
+import { BadRequestError } from "./exceptions"
 
 export const catchAsync =
   (fn: Function) => (req: Request, res: Response, next: NextFunction) => {
@@ -8,7 +8,7 @@ export const catchAsync =
 
 export const getParamsId = (req: Request) => {
   const { id } = req.params
-  if (!id) throw new ExpressError("Missing id", 400)
-  if (typeof id !== "string") throw new ExpressError("Invalid id", 400)
+  if (!id) throw new BadRequestError("Missing id")
+  if (typeof id !== "string") throw new BadRequestError("Invalid id")
   return id
 }

@@ -1,16 +1,16 @@
 import type { Request, Response, NextFunction } from "express"
-import ExpressError from "../lib/express-error"
+import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
 import Campground from "../models/campground"
+import { getParamsId } from "../lib/utils"
 
 export default async function userAuthorized(
   req: Request,
   _: Response,
   next: NextFunction
 ) {
-  const { id } = req.params
-  const campground = await Campground.findById(id)
-  if (!campground) throw new ExpressError("Campground not found", 404)
+  const campground = await Campground.findById(getParamsId(req))
+  if (!campground) throw new NotFoundError("Campground")
   if (!(campground.author.equals(req.user?._id) || req.user?.isAdmin))
-    throw new ExpressError("You do not have permission to do that", 403)
+    throw new NotAuthorizedError()
   next()
 }

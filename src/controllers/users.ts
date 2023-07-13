@@ -1,17 +1,11 @@
 import type { Request, Response } from "express"
 import User from "../models/user"
-import ExpressError from "../lib/express-error"
-import { MongooseError } from "mongoose"
 import { getParamsId } from "../lib/utils"
 
 export async function register(req: Request, res: Response) {
-  try {
-    const { email, username, password } = req.body
-    const user = new User({ email, username })
-    res.send(await User.register(user, password))
-  } catch (e) {
-    if (e instanceof MongooseError) throw new ExpressError(e.message, 400)
-  }
+  const { email, username, password } = req.body
+  const user = new User({ email, username })
+  res.send(await User.register(user, password))
 }
 
 export async function login(req: Request, res: Response) {

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express"
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding"
 import { env } from "../lib/env"
-import ExpressError from "../lib/express-error"
+import { NotFoundError } from "../lib/exceptions"
 import Campground from "../models/campground"
 import { getParamsId } from "../lib/utils"
 
@@ -26,9 +26,8 @@ export async function createCampground(req: Request, res: Response) {
   const geoData = await geocoder
     .forwardGeocode({ query: req.body.location })
     .send()
-    
-  if (!geoData.body.features[0])
-    throw new ExpressError("Location not found", 404)
+
+  if (!geoData.body.features[0]) throw new NotFoundError("Location ")
 
   const campground = new Campground(req.body)
   campground.geometry = geoData.body.features[0].geometry
@@ -39,7 +38,7 @@ export async function createCampground(req: Request, res: Response) {
 
 export async function getCampgroundById(req: Request, res: Response) {
   const campground = await Campground.findById(getParamsId(req))
-  if (!campground) throw new ExpressError("Campground not found", 404)
+  if (!campground) throw new NotFoundError("Campground")
   const populateReviews = await campground.populate({
     path: "reviews",
     populate: { path: "author" },
@@ -60,12 +59,12 @@ export async function updateCampground(req: Request, res: Response) {
     },
     { new: true }
   )
-  if (!campground) throw new ExpressError("Campground not found", 404)
+  if (!campground) throw new NotFoundError("Campground")
   res.json("Campground updated successfully")
 }
 
 export async function deleteCampground(req: Request, res: Response) {
   const campground = await Campground.findByIdAndDelete(getParamsId(req))
-  if (!campground) throw new ExpressError("Campground not found", 404)
+  if (!campground) throw new NotFoundError("Campground")
   res.json("Campground deleted successfully")
 }

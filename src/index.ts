@@ -9,7 +9,7 @@ import passport from "passport"
 import { Strategy } from "passport-local"
 
 import { env } from "./lib/env"
-import ExpressError from "./lib/express-error"
+import { NotFoundError } from "./lib/exceptions"
 import campgroundRoutes from "./routers/campgrounds"
 import reviewRoutes from "./routers/reviews"
 import userRoutes from "./routers/users"
@@ -76,10 +76,7 @@ app.use("/campgrounds/:id/reviews", reviewRoutes)
 app.use("/", userRoutes)
 swaggerDocs(app)
 
-
-app.all("*", (_, __, next) => {
-  next(new ExpressError("Page not found", 404))
-})
+app.all("*", (_, __, next) => next(new NotFoundError("Page")))
 app.use(handleErrors)
 
 const port = env.PORT || 5000
@@ -87,7 +84,7 @@ const port = env.PORT || 5000
 app
   .listen(port, () => {
     console.log(`🗲 Server is running on http://localhost:${port}`)
-    console.log(`📑 Swagger docs is running on http://localhost:${port}/docs`)
+    console.log(`📑 Swagger docs is running on http://localhost:${port}/api-docs`)
   })
   .on("error", (e) => {
     console.log("Server error:", e.message)
