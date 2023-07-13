@@ -51,7 +51,6 @@ export async function updateCampground(req: Request, res: Response) {
 }
 
 export async function deleteCampground(req: Request, res: Response) {
-  const campground = await Campground.findByIdAndDelete(getParamsId(req))
-  if (!campground) throw new NotFoundError("Campground")
+  await Campground.findByIdAndDelete(getParamsId(req))
   res.json("Campground deleted successfully")
 }
