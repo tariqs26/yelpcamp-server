@@ -8,9 +8,13 @@ export default async function userAuthorized(
   _: Response,
   next: NextFunction
 ) {
-  const campground = await Campground.findById(getParamsId(req))
-  if (!campground) throw new NotFoundError("Campground")
-  if (!(campground.author.equals(req.user?._id) || req.user?.isAdmin))
-    throw new NotAuthorizedError()
-  next()
+  try {
+    const campground = await Campground.findById(getParamsId(req))
+    if (!campground) throw new NotFoundError("Campground")
+    if (!(campground.author.equals(req.user?._id) || req.user?.isAdmin))
+      throw new NotAuthorizedError()
+    next()
+  } catch (err) {
+    next(err)
+  }
 }
