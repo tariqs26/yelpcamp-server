@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express"
 import { NotAuthenticatedError } from "../lib/exceptions"
 
-export default function userAuthenticated(
+export function userAuthenticated(
   req: Request,
   _: Response,
   next: NextFunction

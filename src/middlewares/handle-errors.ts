@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express"
 import { MongooseError} from "mongoose"
 
-export default function handleErrors(
+export  function handleErrors(
   err: { status?: number; message: string },
   _: Request,
   res: Response,

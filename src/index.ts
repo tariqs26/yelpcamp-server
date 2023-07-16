@@ -14,7 +14,7 @@ import campgroundRoutes from "./routers/campgrounds"
 import reviewRoutes from "./routers/reviews"
 import userRoutes from "./routers/users"
 import User from "./models/user"
-import handleErrors from "./middlewares/handle-errors"
+import { handleErrors } from "./middlewares/handle-errors"
 import swaggerDocs from "./lib/swagger"
 
 // Set up mongoose connection
@@ -84,7 +84,9 @@ const port = env.PORT || 5000
 app
   .listen(port, () => {
     console.log(`🗲 Server is running on http://localhost:${port}`)
-    console.log(`📑 Swagger docs is running on http://localhost:${port}/api-docs`)
+    console.log(
+      `📑 Swagger docs is running on http://localhost:${port}/api-docs`
+    )
   })
   .on("error", (e) => {
     console.log("Server error:", e.message)

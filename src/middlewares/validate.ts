@@ -6,7 +6,7 @@ import { type AnyZodObject, ZodError } from "zod"
  * @param schema - Zod schema
  * @param isQuery - Validate query instead of body
  */
-export default function validate(schema: AnyZodObject, isQuery = false) {
+export function validate(schema: AnyZodObject, isQuery = false) {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       if (isQuery) await schema.parseAsync(req.query)
