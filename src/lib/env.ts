@@ -10,6 +10,7 @@ const envSchema = Z.object({
   CLIENT_ORIGIN: Z.string().nonempty(),
   MAPBOX_TOKEN: Z.string().nonempty(),
   SECRET: Z.string().nonempty(),
+  NOT_SECURE: Z.enum(["true", "false"]).optional(),
 })
 
 export const env = envSchema.parse(process.env)
