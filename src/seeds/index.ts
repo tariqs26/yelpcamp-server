@@ -5,14 +5,16 @@ import cities from "./cities.json"
 import { descriptors, places, descriptions } from "./seed-helpers.json"
 
 set("strictQuery", true)
-connect(env.DATABASE_URL)
+connect(env.DATABASE_URL).catch(err => {
+  console.log(err)
+})
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "connection error:"))
 db.once("open", () => {
   console.log("Database connected")
 })
 
-const sample = (array: unknown[]) =>
+const sample = (array: string[]) =>
   array[Math.floor(Math.random() * array.length)]
 
 const seedDB = async () => {
@@ -36,7 +38,13 @@ const seedDB = async () => {
   }
 }
 
-seedDB().then(() => {
-  mongoose.connection.close()
-  console.log("Database disconnected")
-})
+seedDB()
+  .then(() => {
+    mongoose.connection.close().catch(err => {
+      console.log(err)
+    })
+    console.log("Database disconnected")
+  })
+  .catch(err => {
+    console.log(err)
+  })
