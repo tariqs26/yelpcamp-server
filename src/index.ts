@@ -19,7 +19,9 @@ import swaggerDocs from "./lib/swagger"
 
 // Set up mongoose connection
 set("strictQuery", true)
-connect(env.DATABASE_URL)
+connect(env.DATABASE_URL).catch(err => {
+  console.log(err)
+})
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "connection error:"))
 db.once("open", () => {
@@ -57,13 +59,13 @@ app.use(
     saveUninitialized: true,
     name: "apple touch icon",
     cookie: {
-      secure: !Boolean(env.NOT_SECURE),
+      secure: process.env.NODE_ENV === "production",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // cookie will expire in 7 days
       maxAge: 1000 * 60 * 60 * 24 * 7,
       sameSite: "none",
       httpOnly: false,
     },
-  })
+  }),
 )
 
 app.use(passport.initialize(), passport.session())
@@ -76,18 +78,20 @@ app.use("/campgrounds/:id/reviews", reviewRoutes)
 app.use("/", userRoutes)
 swaggerDocs(app)
 
-app.all("*", (_, __, next) => next(new NotFoundError("Page")))
+app.all("*", (_, __, next) => {
+  next(new NotFoundError("Page"))
+})
 app.use(handleErrors)
 
-const port = env.PORT || 5000
+const port = env.PORT ?? 5000
 
 app
   .listen(port, () => {
     console.log(`🗲 Server is running on http://localhost:${port}`)
     console.log(
-      `📑 Swagger docs is running on http://localhost:${port}/api-docs`
+      `📑 Swagger docs is running on http://localhost:${port}/api-docs`,
     )
   })
-  .on("error", (e) => {
+  .on("error", e => {
     console.log("Server error:", e.message)
   })

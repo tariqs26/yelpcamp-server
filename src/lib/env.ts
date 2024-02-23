@@ -9,8 +9,7 @@ const envSchema = Z.object({
   DATABASE_URL: Z.string().min(1),
   CLIENT_ORIGIN: Z.string().min(1),
   MAPBOX_TOKEN: Z.string().min(1),
-  SECRET: Z.string().min(1),
-  NOT_SECURE: Z.enum(["true", "false"]).optional(),
+  SECRET: Z.string().min(1)
 })
 
 export const env = envSchema.parse(process.env)
