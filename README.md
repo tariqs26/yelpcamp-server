@@ -4,21 +4,20 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 
 ## Technologies Used
 
-| Technology                                                                     | Purpose                               |
-| ------------------------------------------------------------------------------ | ------------------------------------- |
-| [Express](http://expressjs.com/)                                               | Web framework                         |
-| [Cors](https://npmjs.com/package/cors)                                         | Cross-origin resource sharing         |
-| [Nodemon](https://npmjs.com/package/nodemon)                                   | Development server                    |
-| [MongoDB](https://mongodb.com/)                                                | Database                              |
-| [Mongoose](https://mongoosejs.com/)                                            | ODM                                   |
-| [Zod](https://zod.dev/)                                                        | Validation Library                    |
-| [Dotenv](https://npmjs.com/package/dotenv)                                     | Environment variables                 |
-| [Passport](http://passportjs.org/)                                             | Authentication                        |
-| [Express-Session](https://npmjs.com/package/express-session)                   | Session management                    |
-| [Helmet](https://helmetjs.github.io/)                                          | Setting security-related HTTP headers |
-| [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Preventing NoSQL injections           |
-| [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Rate limiting                         |
-| [Swagger](https://swagger.io/)                                                 | API documentation                     |
+| Technology                                                                     | Purpose                                  |
+| ------------------------------------------------------------------------------ | ---------------------------------------- |
+| [Express](http://expressjs.com/)                                               | Web framework                            |
+| [MongoDB](https://mongodb.com/)                                                | Database                                 |
+| [Mongoose](https://mongoosejs.com/)                                            | ODM                                      |
+| [Passport](http://passportjs.org/)                                             | Authentication                           |
+| [Express-Session](https://npmjs.com/package/express-session)                   | Session management                       |
+| [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Preventing NoSQL injections              |
+| [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Rate limiting                            |
+| [Cors](https://npmjs.com/package/cors)                                         | Cross-origin resource sharing middleware |
+| [Dotenv](https://npmjs.com/package/dotenv)                                     | Environment variables                    |
+| [Helmet](https://helmetjs.github.io/)                                          | Setting security-related HTTP headers    |
+| [Swagger](https://swagger.io/)                                                 | API documentation                        |
+| [Zod](https://zod.dev/)                                                        | Validation Library                       |
 
 ## Documentation
 
@@ -71,7 +70,7 @@ const CampgroundSchema = new Schema(
     author: { type: Schema.Types.ObjectId, ref: "User" },
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 ```
 
@@ -84,7 +83,7 @@ const ReviewSchema = new Schema(
     rating: Number,
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 ```
 
@@ -123,13 +122,16 @@ CLIENT_ORIGIN= # Client url, used for CORS
 
 ## Available Scripts
 
-| Script          | Description                                                |
-| --------------- | ---------------------------------------------------------- |
-| `npm run dev`   | Run the server in development mode (http://localhost:3000) |
-| `npm run build` | Build the server for production mode                       |
-| `npm run clean` | Clean the build directory                                  |
-| `npm start`     | Run the server in production mode                          |
-| `npm run seed`  | Seed the database with sample data                         |
+| Script             | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| `npm run dev`      | Run the server in development mode (<http://localhost:3000>) |
+| `npm run lint`     | Lint the code                                                |
+| `npm run lint:fix` | Lint the code and fix issues                                 |
+| `npm run prettier` | Format the code using Prettier                               |
+| `npm run build`    | Build the server for production mode                         |
+| `npm run clean`    | Clean the build directory                                    |
+| `npm start`        | Run the server in production mode                            |
+| `npm run seed`     | Seed the database with sample data                           |
 
 ## Contributing
 
