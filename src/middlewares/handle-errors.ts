@@ -1,14 +1,17 @@
 import type { Request, Response, NextFunction } from "express"
-import { MongooseError} from "mongoose"
+import { MongooseError } from "mongoose"
 
-export  function handleErrors(
-  err: { status?: number; message: string },
+export function handleErrors(
+  err: {
+    status?: number
+    message: string
+  },
   _: Request,
   res: Response,
   __: NextFunction
 ) {
-  let status = err.status || 500
-  let message = err.message || "Something went wrong"
+  let status = err.status ?? 500
+  let message = err.message ?? "Something went wrong"
   if (err instanceof MongooseError) {
     switch (err.name) {
       case "CastError":
@@ -17,5 +20,5 @@ export  function handleErrors(
         break
     }
   }
-  return res.status(status || 500).send(message || "Something went wrong")
+  return res.status(status).send(message)
 }
