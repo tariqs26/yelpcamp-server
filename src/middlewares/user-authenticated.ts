@@ -6,6 +6,6 @@ export function userAuthenticated(
   _: Response,
   next: NextFunction
 ) {
-  if (!req.user) throw new NotAuthenticatedError()
+  if (req.user === undefined) throw new NotAuthenticatedError()
   next()
 }

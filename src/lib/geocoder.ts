@@ -6,6 +6,6 @@ const geocoder = mbxGeocoding({ accessToken: env.MAPBOX_TOKEN })
 
 export const getGeoDataGeometry = async (location: string) => {
   const { body } = await geocoder.forwardGeocode({ query: location }).send()
-  if (!body.features[0]) throw new NotFoundError("Location")
+  if (body.features[0] === undefined) throw new NotFoundError("Location")
   return body.features[0].geometry
 }
