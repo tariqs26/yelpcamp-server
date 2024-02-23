@@ -19,7 +19,7 @@ const UserSchema = new Schema({
 UserSchema.plugin(passportLocalMongoose)
 
 UserSchema.post("findOneAndDelete", async function (doc) {
-  if (doc) {
+  if (doc !== null) {
     await Review.deleteMany({ author: doc._id })
     await Campground.deleteMany({ author: doc._id })
   }
