@@ -19,8 +19,8 @@ import reviewRoutes from "./routers/reviews"
 import userRoutes from "./routers/users"
 
 set("strictQuery", true)
-connect(env.DATABASE_URL).catch(err => {
-  console.log(err)
+connect(env.DATABASE_URL).catch(error => {
+  console.error("Database connection error:", error)
 })
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "connection error:"))
@@ -40,7 +40,7 @@ const store = new MongoDBStore({
   mongoUrl: env.DATABASE_URL,
   touchAfter: 24 * 60 * 60,
 }).on("error", error => {
-  console.log("Session store error", error)
+  console.error("Session store error", error)
 })
 
 app.set("trust proxy", 1)
@@ -86,6 +86,6 @@ app
     console.log(`📑 Swagger docs is running on ${serverUrl}/api-docs`)
     if (env.NODE_ENV === "production") task.start()
   })
-  .on("error", e => {
-    console.log("Server error:", e.message)
+  .on("error", error => {
+    console.error("Server error:", error.message)
   })

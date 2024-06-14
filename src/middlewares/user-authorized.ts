@@ -14,7 +14,7 @@ export default async function userAuthorized(
     if (!(campground.author.equals(req.user?._id) || req.user?.isAdmin))
       throw new NotAuthorizedError()
     next()
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 }
