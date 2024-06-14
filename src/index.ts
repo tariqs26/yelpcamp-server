@@ -69,7 +69,15 @@ passport.deserializeUser(User.deserializeUser())
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
 app.use("/", userRoutes)
-app.use("/ping", (_, res) => res.send(`pong ${(new Date()).toString()}`))
+app.use("/ping", (_, res) =>
+  res.send(
+    `pong ${new Date().toLocaleString("en-CA", {
+      dateStyle: "full",
+      timeStyle: "medium",
+      timeZone: "America/Toronto",
+    })}`
+  )
+)
 swaggerDocs(app)
 app.all("*", (_, __, next) => {
   next(new NotFoundError("Page"))
