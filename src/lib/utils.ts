@@ -3,9 +3,9 @@ import { BadRequestError } from "./exceptions"
 
 export const catchAsync =
   (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) =>
-    (req: Request, res: Response, next: NextFunction) => {
-      fn(req, res, next).catch(next)
-    }
+  (req: Request, res: Response, next: NextFunction) => {
+    fn(req, res, next).catch(next)
+  }
 
 export const getParamsId = (req: Request) => {
   const { id } = req.params
