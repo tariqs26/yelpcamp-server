@@ -84,7 +84,7 @@ app.all("*", (_, __, next) => {
 })
 app.use(errorHandler)
 
-const port = env.PORT ?? 5000
+const port = env.PORT ?? 3000
 
 const serverUrl = `http://localhost:${port}`
 
