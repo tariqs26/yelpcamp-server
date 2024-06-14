@@ -5,6 +5,7 @@ import mongoSanitize from "express-mongo-sanitize"
 import session from "express-session"
 import helmet from "helmet"
 import mongoose, { connect, set } from "mongoose"
+import morgan from "morgan"
 import passport from "passport"
 import { Strategy } from "passport-local"
 
@@ -33,6 +34,7 @@ const app = express()
 app.use(express.json({ limit: "10kb" }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({ origin: env.CLIENT_ORIGIN, credentials: true }))
+app.use(morgan("dev"))
 app.use(helmet())
 app.use(mongoSanitize())
 
