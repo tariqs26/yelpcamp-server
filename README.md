@@ -70,7 +70,7 @@ const CampgroundSchema = new Schema(
     author: { type: Schema.Types.ObjectId, ref: "User" },
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
-  { timestamps: true },
+  { timestamps: true }
 )
 ```
 
@@ -83,7 +83,7 @@ const ReviewSchema = new Schema(
     rating: Number,
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
-  { timestamps: true },
+  { timestamps: true }
 )
 ```
 
@@ -102,7 +102,7 @@ const UserSchema = new Schema({
 })
 ```
 
-## Installation
+## Setup
 
 ### Install dependencies
 
@@ -122,16 +122,15 @@ CLIENT_ORIGIN= # Client url, used for CORS
 
 ## Available Scripts
 
-| Script             | Description                                                  |
-| ------------------ | ------------------------------------------------------------ |
-| `npm run dev`      | Run the server in development mode (<http://localhost:3000>) |
-| `npm run lint`     | Lint the code                                                |
-| `npm run lint:fix` | Lint the code and fix issues                                 |
-| `npm run prettier` | Format the code using Prettier                               |
-| `npm run build`    | Build the server for production mode                         |
-| `npm run clean`    | Clean the build directory                                    |
-| `npm start`        | Run the server in production mode                            |
-| `npm run seed`     | Seed the database with sample data                           |
+| Script           | Description                                                  |
+| ---------------- | ------------------------------------------------------------ |
+| `npm run dev`    | Run the server in development mode (<http://localhost:3000>) |
+| `npm run lint`   | Lint the code                                                |
+| `npm run format` | Format the code using Prettier                               |
+| `npm run build`  | Build the server for production mode                         |
+| `npm run clean`  | Clean the build directory                                    |
+| `npm start`      | Run the server in production mode                            |
+| `npm run seed`   | Seed the database with sample data                           |
 
 ## Contributing
 
