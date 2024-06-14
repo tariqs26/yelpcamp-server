@@ -2,17 +2,14 @@ import { Router } from "express"
 import passport from "passport"
 import * as controller from "../controllers/users"
 import { catchAsync } from "../lib/utils"
-import { userSchema } from "../lib/validations"
 import { registerAccountLimiter } from "../middlewares/rate-limiter"
-import { userAuthenticated } from "../middlewares/user-authenticated"
-import { validate } from "../middlewares/validate"
+import userAuthenticated from "../middlewares/user-authenticated"
 
 const router = Router()
 
 router.post(
   "/register",
   registerAccountLimiter,
-  validate(userSchema),
   catchAsync(controller.register)
 )
 

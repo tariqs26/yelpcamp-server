@@ -3,7 +3,7 @@ import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
 import { getParamsId } from "../lib/utils"
 import Campground from "../models/campground"
 
-export async function userAuthorized(
+export default async function userAuthorized(
   req: Request,
   _: Response,
   next: NextFunction

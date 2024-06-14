@@ -2,6 +2,8 @@ import type { Request, Response } from "express"
 import { NotFoundError } from "../lib/exceptions"
 import { getGeoDataGeometry } from "../lib/geocoder"
 import { getParamsId } from "../lib/utils"
+import validate from "../lib/validate"
+import { campgroundSchema } from "../lib/validations"
 import Campground from "../models/campground"
 
 export async function getCampgrounds(req: Request, res: Response) {
@@ -20,33 +22,46 @@ export async function getCampgrounds(req: Request, res: Response) {
 }
 
 export async function createCampground(req: Request, res: Response) {
-  const geometry = await getGeoDataGeometry(req.body.location)
-  const campground = new Campground(req.body)
+  const body = validate(req.body, campgroundSchema)
+
+  const geometry = await getGeoDataGeometry(body.location)
+
+  const campground = new Campground(body)
+
   campground.geometry = geometry
   campground.author = req.user?._id
+
   await campground.save()
+
   res.send(campground)
 }
 
 export async function getCampgroundById(req: Request, res: Response) {
   const campground = await Campground.findById(getParamsId(req))
+
   if (!campground) throw new NotFoundError("Campground")
+
   const populateReviews = await campground.populate({
     path: "reviews",
     populate: { path: "author" },
   })
+
   res.send(await populateReviews.populate("author"))
 }
 
 export async function updateCampground(req: Request, res: Response) {
-  const geometry = await getGeoDataGeometry(req.body.location)
+  const body = validate(req.body, campgroundSchema)
+
+  const geometry = await getGeoDataGeometry(body.location)
 
   const campground = await Campground.findByIdAndUpdate(
     getParamsId(req),
-    { ...req.body, geometry },
+    { ...body, geometry },
     { new: true }
   )
+
   if (!campground) throw new NotFoundError("Campground")
+
   res.json("Campground updated successfully")
 }
 

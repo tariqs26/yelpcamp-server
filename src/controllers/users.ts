@@ -1,12 +1,10 @@
 import type { Request, Response } from "express"
+import validate from "../lib/validate"
+import { userSchema } from "../lib/validations"
 import User from "../models/user"
 
 export async function register(req: Request, res: Response) {
-  const { email, username, password } = req.body as {
-    email: string
-    username: string
-    password: string
-  }
+  const { email, username, password } = validate(req.body, userSchema)
   const user = new User({ email, username })
   res.send(await User.register(user, password))
 }
