@@ -7,27 +7,20 @@ class ExpressError extends Error {
 }
 
 export class NotAuthenticatedError extends ExpressError {
-  constructor(message: string = "Please login to access this feature") {
+  constructor(message = "Please login to access this feature") {
     super(message, 401)
   }
 }
 
 export class NotAuthorizedError extends ExpressError {
-  constructor(
-    message: string = "You are not authorized to access this feature"
-  ) {
+  constructor(message = "You are not authorized to access this feature") {
     super(message, 403)
   }
 }
 
 export class NotFoundError extends ExpressError {
-  /**
-   * @description
-   * 404 Not Found
-   * @param message - Model name
-   */
-  constructor(message: string) {
-    super(message + " not found", 404)
+  constructor(model: string) {
+    super(`${model} not found`, 404)
   }
 }
 
