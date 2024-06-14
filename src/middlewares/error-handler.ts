@@ -1,8 +1,8 @@
-import type { Request, Response, NextFunction } from "express"
+import type { NextFunction, Request, Response } from "express"
 import { MongooseError } from "mongoose"
 
-export function handleErrors(
-  err: {
+export default function errorHandler(
+  error: {
     status?: number
     message: string
   },
@@ -10,10 +10,10 @@ export function handleErrors(
   res: Response,
   __: NextFunction
 ) {
-  let status = err.status ?? 500
-  let message = err.message ?? "Something went wrong"
-  if (err instanceof MongooseError) {
-    switch (err.name) {
+  let status = error.status ?? 500
+  let message = error.message ?? "Something went wrong"
+  if (error instanceof MongooseError) {
+    switch (error.name) {
       case "CastError":
         status = 400
         message = "Invalid ObjectId"
