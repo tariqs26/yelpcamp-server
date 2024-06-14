@@ -43,10 +43,10 @@ export async function getCampgroundById(req: Request, res: Response) {
 
   const populateReviews = await campground.populate({
     path: "reviews",
-    populate: { path: "author" },
+    populate: { path: "author", select: "_id username isAdmin" },
   })
 
-  res.send(await populateReviews.populate("author"))
+  res.send(await populateReviews.populate("author", "_id username isAdmin"))
 }
 
 export async function updateCampground(req: Request, res: Response) {
