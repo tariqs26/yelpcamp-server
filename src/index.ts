@@ -57,8 +57,6 @@ app.use(
       secure: process.env.NODE_ENV === "production",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // cookie will expire in 7 days
       maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: "none",
-      httpOnly: true,
     },
   })
 )
