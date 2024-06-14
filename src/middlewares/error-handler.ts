@@ -8,8 +8,10 @@ export default function errorHandler(
   },
   _: Request,
   res: Response,
-  __: NextFunction
+  next: NextFunction
 ) {
+  if (res.headersSent) return next(error)
+
   let status = error.status ?? 500
   let message = error.message ?? "Something went wrong"
   if (error instanceof MongooseError) {
@@ -20,5 +22,6 @@ export default function errorHandler(
         break
     }
   }
-  return res.status(status).send(message)
+
+  res.status(status).send(message)
 }
