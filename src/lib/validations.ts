@@ -1,20 +1,20 @@
-import Z from "zod"
+import { z } from "zod"
 
-export const campgroundSchema = Z.object({
-  title: Z.string().min(1),
-  price: Z.number().int().positive(),
-  image: Z.string().min(1),
-  description: Z.string().min(1),
-  location: Z.string().min(1),
+export const campgroundSchema = z.object({
+  title: z.string().min(1),
+  price: z.number().int().positive(),
+  image: z.string().min(1),
+  description: z.string().min(1),
+  location: z.string().min(1),
 })
 
-export const reviewSchema = Z.object({
-  rating: Z.number().int().min(1).max(5),
-  body: Z.string().min(1),
+export const reviewSchema = z.object({
+  rating: z.number().int().min(1).max(5),
+  body: z.string().min(1),
 })
 
-export const userSchema = Z.object({
-  email: Z.string().email(),
-  username: Z.string().min(1),
-  password: Z.string().min(8),
+export const userSchema = z.object({
+  email: z.string().email(),
+  username: z.string().min(1),
+  password: z.string().min(8),
 })

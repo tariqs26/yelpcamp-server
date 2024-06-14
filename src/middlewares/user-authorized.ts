@@ -1,7 +1,7 @@
-import type { Request, Response, NextFunction } from "express"
+import type { NextFunction, Request, Response } from "express"
 import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
-import Campground from "../models/campground"
 import { getParamsId } from "../lib/utils"
+import Campground from "../models/campground"
 
 export async function userAuthorized(
   req: Request,

@@ -1,11 +1,11 @@
 import { Router } from "express"
 import passport from "passport"
+import * as controller from "../controllers/users"
+import { catchAsync } from "../lib/utils"
+import { userSchema } from "../lib/validations"
 import { registerAccountLimiter } from "../middlewares/rate-limiter"
 import { userAuthenticated } from "../middlewares/user-authenticated"
 import { validate } from "../middlewares/validate"
-import { userSchema } from "../lib/validations"
-import { catchAsync } from "../lib/utils"
-import * as controller from "../controllers/users"
 
 const router = Router()
 

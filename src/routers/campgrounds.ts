@@ -1,11 +1,11 @@
 import { Router } from "express"
+import * as controller from "../controllers/campgrounds"
+import { catchAsync } from "../lib/utils"
+import { campgroundSchema } from "../lib/validations"
 import { createCampgroundLimiter } from "../middlewares/rate-limiter"
 import { userAuthenticated } from "../middlewares/user-authenticated"
 import { userAuthorized } from "../middlewares/user-authorized"
 import { validate } from "../middlewares/validate"
-import { campgroundSchema } from "../lib/validations"
-import { catchAsync } from "../lib/utils"
-import * as controller from "../controllers/campgrounds"
 
 const router = Router()
 

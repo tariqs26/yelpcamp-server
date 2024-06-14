@@ -1,5 +1,5 @@
-import type { Request, Response, NextFunction } from "express"
-import { type AnyZodObject, ZodError } from "zod"
+import type { NextFunction, Request, Response } from "express"
+import { ZodError, type AnyZodObject } from "zod"
 
 /**
  * Validate request body or query

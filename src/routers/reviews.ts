@@ -1,9 +1,9 @@
 import { Router } from "express"
-import { validate } from "../middlewares/validate"
-import { userAuthenticated } from "../middlewares/user-authenticated"
-import { reviewSchema } from "../lib/validations"
-import { catchAsync } from "../lib/utils"
 import * as controller from "../controllers/reviews"
+import { catchAsync } from "../lib/utils"
+import { reviewSchema } from "../lib/validations"
+import { userAuthenticated } from "../middlewares/user-authenticated"
+import { validate } from "../middlewares/validate"
 
 const router = Router({ mergeParams: true })
 

@@ -1,10 +1,10 @@
 import type { Express, Request, Response } from "express"
 import swaggerJsdoc, { type OAS3Options } from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
-import paths from "../docs/paths/campgrounds.json"
-import schemas from "../docs/components/schemas.json"
 import requestBodies from "../docs/components/requestBodies.json"
 import responses from "../docs/components/responses.json"
+import schemas from "../docs/components/schemas.json"
+import paths from "../docs/paths/campgrounds.json"
 
 const options: OAS3Options = {
   definition: {

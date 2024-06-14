@@ -4,7 +4,6 @@ import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
 import Campground from "../models/campground"
 import Review from "../models/review"
 
-
 export async function createReview(req: Request, res: Response) {
   const campground = await Campground.findById(getParamsId(req))
   if (!campground) throw new NotFoundError("Campground")
