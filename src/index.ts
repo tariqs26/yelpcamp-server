@@ -4,7 +4,7 @@ import express from "express"
 import mongoSanitize from "express-mongo-sanitize"
 import session from "express-session"
 import helmet from "helmet"
-import mongoose, { connect, set } from "mongoose"
+import { connect, set } from "mongoose"
 import morgan from "morgan"
 import passport from "passport"
 import { Strategy } from "passport-local"
@@ -20,14 +20,14 @@ import reviewRoutes from "./routers/reviews"
 import userRoutes from "./routers/users"
 
 set("strictQuery", true)
-connect(env.DATABASE_URL).catch(error => {
-  console.error("Database connection error:", error)
-})
-const db = mongoose.connection
-db.on("error", console.error.bind(console, "connection error:"))
-db.once("open", () => {
-  console.log("Database connected successfully")
-})
+if (env.NODE_ENV === "development") set("debug", true)
+connect(env.DATABASE_URL)
+  .then(() => {
+    console.log("Database connecting successfully")
+  })
+  .catch(error => {
+    console.error("Database connection error:", error)
+  })
 
 const app = express()
 
