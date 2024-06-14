@@ -6,7 +6,7 @@ const ReviewSchema = new Schema(
     rating: Number,
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
-  { timestamps: true },
+  { timestamps: true }
 )
 
 export default model("Review", ReviewSchema)
