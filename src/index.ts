@@ -90,6 +90,7 @@ const serverUrl = `http://localhost:${port}`
 
 app
   .listen(port, () => {
+    console.log(env)
     console.log(`🗲 Server is running on ${serverUrl}`)
     console.log(`📑 Swagger docs is running on ${serverUrl}/api-docs`)
     if (env.NODE_ENV === "production") task.start()
