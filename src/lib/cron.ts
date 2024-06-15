@@ -1,7 +1,7 @@
 import cron from "node-cron"
 
 export const task = cron.schedule(
-  "*/15 * * * *",
+  "*/14 * * * *",
   () => {
     console.log("Pinging server...")
     const url = "https://yc-server8080.onrender.com/ping"
