@@ -45,18 +45,18 @@ const store = new MongoDBStore({
   console.error("Session store error", error)
 })
 
-app.set("trust proxy", 1)
+if (env.NODE_ENV === "production") app.set("trust proxy", 1)
+
 app.use(
   session({
     store,
     secret: env.SECRET,
     resave: false,
     saveUninitialized: true,
-    name: "apple touch icon",
+    name: "session",
     cookie: {
-      secure: process.env.NODE_ENV === "production",
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // cookie will expire in 7 days
-      maxAge: 1000 * 60 * 60 * 24 * 7,
+      secure: env.NODE_ENV === "production",
+      maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
     },
   })
 )
