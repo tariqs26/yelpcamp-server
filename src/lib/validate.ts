@@ -1,4 +1,4 @@
-import { type SafeParseReturnType, z } from "zod"
+import type { SafeParseReturnType } from "zod"
 import { BadRequestError } from "./exceptions"
 
 const validate = <Input, Output>(
