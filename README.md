@@ -19,10 +19,6 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 | [Swagger](https://swagger.io/)                                                 | API documentation                        |
 | [Zod](https://zod.dev/)                                                        | Validation Library                       |
 
-## Documentation
-
-API documentation is available at [https://yc-server8080.onrender.com/api-docs](https://yc-server8080.onrender.com/api-docs)
-
 ## Endpoints
 
 ### Campgrounds
