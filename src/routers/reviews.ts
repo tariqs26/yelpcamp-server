@@ -5,12 +5,8 @@ import { userAuthenticated } from "../middlewares/user-authenticated"
 
 const router = Router({ mergeParams: true })
 
-router.post("/", userAuthenticated, catchAsync(controller.createReview))
-
-router.delete(
-  "/:reviewId",
-  userAuthenticated,
-  catchAsync(controller.deleteReview)
-)
+router
+  .post("/", userAuthenticated, catchAsync(controller.createReview))
+  .delete("/:reviewId", userAuthenticated, catchAsync(controller.deleteReview))
 
 export default router
