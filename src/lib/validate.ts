@@ -1,7 +1,7 @@
 import type { SafeParseReturnType } from "zod"
 import { BadRequestError } from "./exceptions"
 
-const validate = <Input, Output>(
+export const validate = <Input, Output>(
   value: unknown,
   schema: {
     safeParse(data: unknown): SafeParseReturnType<Input, Output>
@@ -16,5 +16,3 @@ const validate = <Input, Output>(
 
   return data.data
 }
-
-export default validate

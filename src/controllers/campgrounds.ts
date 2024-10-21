@@ -2,7 +2,7 @@ import type { Request, Response } from "express"
 import { NotFoundError } from "../lib/exceptions"
 import { getGeoDataGeometry } from "../lib/geocoder"
 import { getParamsId } from "../lib/utils"
-import validate from "../lib/validate"
+import { validate } from "../lib/validate"
 import { campgroundSchema } from "../lib/validations"
 import Campground from "../models/campground"
 

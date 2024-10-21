@@ -1,5 +1,5 @@
 import type { Request, Response } from "express"
-import validate from "../lib/validate"
+import { validate } from "../lib/validate"
 import { userSchema } from "../lib/validations"
 import User from "../models/user"
 
