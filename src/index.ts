@@ -9,7 +9,6 @@ import morgan from "morgan"
 import passport from "passport"
 import { Strategy } from "passport-local"
 
-import { task } from "./lib/cron"
 import { env } from "./lib/env"
 import { NotFoundError } from "./lib/exceptions"
 import swaggerDocs from "./lib/swagger"
@@ -25,7 +24,7 @@ connect(env.DATABASE_URL)
   .then(() => {
     console.log("Database connecting successfully")
   })
-  .catch(error => {
+  .catch((error) => {
     console.error("Database connection error:", error)
   })
 
@@ -41,7 +40,7 @@ app.use(mongoSanitize())
 const store = new MongoDBStore({
   mongoUrl: env.DATABASE_URL,
   touchAfter: 24 * 60 * 60,
-}).on("error", error => {
+}).on("error", (error) => {
   console.error("Session store error", error)
 })
 
@@ -69,15 +68,7 @@ passport.deserializeUser(User.deserializeUser())
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
 app.use("/", userRoutes)
-app.use("/ping", (_, res) =>
-  res.send(
-    `pong ${new Date().toLocaleString("en-CA", {
-      dateStyle: "full",
-      timeStyle: "medium",
-      timeZone: "America/Toronto",
-    })}`
-  )
-)
+
 swaggerDocs(app)
 app.all("*", (_, __, next) => {
   next(new NotFoundError("Page"))
@@ -93,8 +84,7 @@ app
     console.log(env)
     console.log(`🗲 Server is running on ${serverUrl}`)
     console.log(`📑 Swagger docs is running on ${serverUrl}/api-docs`)
-    if (env.NODE_ENV === "production") task.start()
   })
-  .on("error", error => {
+  .on("error", (error) => {
     console.error("Server error:", error.message)
   })
