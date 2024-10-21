@@ -1,8 +1,8 @@
 import type { Request, Response } from "express"
 import { NotAuthorizedError, NotFoundError } from "../lib/exceptions"
+import { reviewSchema } from "../lib/schemas"
 import { getParamsId } from "../lib/utils"
 import { validate } from "../lib/validate"
-import { reviewSchema } from "../lib/validations"
 import Campground from "../models/campground"
 import Review from "../models/review"
 

@@ -1,6 +1,6 @@
 import type { Request, Response } from "express"
+import { userSchema } from "../lib/schemas"
 import { validate } from "../lib/validate"
-import { userSchema } from "../lib/validations"
 import User from "../models/user"
 
 export async function register(req: Request, res: Response) {

@@ -1,9 +1,9 @@
 import type { Request, Response } from "express"
 import { NotFoundError } from "../lib/exceptions"
 import { getGeoDataGeometry } from "../lib/geocoder"
+import { campgroundSchema } from "../lib/schemas"
 import { getParamsId } from "../lib/utils"
 import { validate } from "../lib/validate"
-import { campgroundSchema } from "../lib/validations"
 import Campground from "../models/campground"
 
 export async function getCampgrounds(req: Request, res: Response) {
