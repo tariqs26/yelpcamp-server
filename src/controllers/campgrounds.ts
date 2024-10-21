@@ -8,15 +8,15 @@ import Campground from "../models/campground"
 
 export async function getCampgrounds(req: Request, res: Response) {
   const { page = 1 } = req.query
-  const MAX_CAMPGROUNDS = 5
+  const PER_PAGE = 5
 
   res.send({
     campgrounds: await Campground.find({})
       .sort({ createdAt: -1 })
-      .skip((Number(page) - 1) * MAX_CAMPGROUNDS)
-      .limit(MAX_CAMPGROUNDS),
+      .skip((Number(page) - 1) * PER_PAGE)
+      .limit(PER_PAGE),
     totalPages: Math.ceil(
-      (await Campground.countDocuments()) / MAX_CAMPGROUNDS
+      (await Campground.countDocuments()) / PER_PAGE
     ),
   })
 }
