@@ -10,6 +10,5 @@ export const catchAsync =
 export const getParamsId = (req: Request) => {
   const { id } = req.params
   if (id === undefined) throw new BadRequestError("Missing id")
-  if (typeof id !== "string") throw new BadRequestError("Invalid id")
   return id
 }
