@@ -5,7 +5,7 @@ import cities from "./cities.json"
 import { descriptions, descriptors, places } from "./seed-helpers.json"
 
 set("strictQuery", true)
-connect(env.DATABASE_URL).catch(error => {
+connect(env.DATABASE_URL).catch((error) => {
   console.error(error)
 })
 const db = mongoose.connection
@@ -40,11 +40,11 @@ const seedDB = async () => {
 
 seedDB()
   .then(() => {
-    mongoose.connection.close().catch(error => {
+    mongoose.connection.close().catch((error) => {
       console.error(error)
     })
     console.log("Database disconnected")
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error)
   })

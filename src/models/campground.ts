@@ -18,7 +18,7 @@ const CampgroundSchema = new Schema(
   { timestamps: true }
 )
 
-CampgroundSchema.post("findOneAndDelete", async doc => {
+CampgroundSchema.post("findOneAndDelete", async (doc) => {
   if (doc) await Review.deleteMany({ _id: { $in: doc.reviews } })
 })
 
