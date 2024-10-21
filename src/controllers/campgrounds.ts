@@ -6,7 +6,7 @@ import { getParamsId } from "../lib/utils"
 import { validate } from "../lib/validate"
 import Campground from "../models/campground"
 
-export async function getCampgrounds(req: Request, res: Response) {
+export const getCampgrounds = async (req: Request, res: Response) => {
   const { page = 1 } = req.query
   const PER_PAGE = 5
 
@@ -15,13 +15,11 @@ export async function getCampgrounds(req: Request, res: Response) {
       .sort({ createdAt: -1 })
       .skip((Number(page) - 1) * PER_PAGE)
       .limit(PER_PAGE),
-    totalPages: Math.ceil(
-      (await Campground.countDocuments()) / PER_PAGE
-    ),
+    totalPages: Math.ceil((await Campground.countDocuments()) / PER_PAGE),
   })
 }
 
-export async function createCampground(req: Request, res: Response) {
+export const createCampground = async (req: Request, res: Response) => {
   const body = validate(req.body, campgroundSchema)
 
   const geometry = await getGeoDataGeometry(body.location)
@@ -36,7 +34,7 @@ export async function createCampground(req: Request, res: Response) {
   res.send(campground)
 }
 
-export async function getCampgroundById(req: Request, res: Response) {
+export const getCampground = async (req: Request, res: Response) => {
   const campground = await Campground.findById(getParamsId(req))
 
   if (!campground) throw new NotFoundError("Campground")
@@ -49,7 +47,7 @@ export async function getCampgroundById(req: Request, res: Response) {
   res.send(await populateReviews.populate("author", "_id username isAdmin"))
 }
 
-export async function updateCampground(req: Request, res: Response) {
+export const updateCampground = async (req: Request, res: Response) => {
   const body = validate(req.body, campgroundSchema)
 
   const geometry = await getGeoDataGeometry(body.location)
@@ -65,7 +63,7 @@ export async function updateCampground(req: Request, res: Response) {
   res.json("Campground updated successfully")
 }
 
-export async function deleteCampground(req: Request, res: Response) {
+export const deleteCampground = async (req: Request, res: Response) => {
   await Campground.findByIdAndDelete(getParamsId(req))
   res.json("Campground deleted successfully")
 }

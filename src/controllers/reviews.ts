@@ -6,7 +6,7 @@ import { validate } from "../lib/validate"
 import Campground from "../models/campground"
 import Review from "../models/review"
 
-export async function createReview(req: Request, res: Response) {
+export const createReview = async (req: Request, res: Response) => {
   const campground = await Campground.findById(getParamsId(req))
   if (!campground) throw new NotFoundError("Campground")
 
@@ -19,7 +19,7 @@ export async function createReview(req: Request, res: Response) {
   res.send(await review.populate("author"))
 }
 
-export async function deleteReview(req: Request, res: Response) {
+export const deleteReview = async (req: Request, res: Response) => {
   const { id, reviewId } = req.params
   const review = await Review.findById(reviewId)
 

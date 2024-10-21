@@ -18,7 +18,7 @@ router
 
 router
   .route("/:id")
-  .get(catchAsync(controller.getCampgroundById))
+  .get(catchAsync(controller.getCampground))
   .put(
     userAuthenticated,
     userAuthorized,
