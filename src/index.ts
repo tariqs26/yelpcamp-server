@@ -66,12 +66,19 @@ passport.use(new Strategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+app.get("/healthz", (_req, res) => {
+  const uptime = process.hrtime()
+  res.json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    uptime: `${uptime[0]}s ${uptime[1] / 1e6}ms`,
+  })
+})
 app.use("/", authRoutes)
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
-
 swaggerDocs(app)
-app.all("*", (_, __, next) => {
+app.all("*", (_req, _res, next) => {
   next(new NotFoundError("Page"))
 })
 app.use(errorHandler)
