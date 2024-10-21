@@ -1,14 +1,14 @@
-import type { NextFunction, Request, Response } from "express"
+import type { ErrorRequestHandler } from "express"
 
-export default function errorHandler(
+export const errorHandler: ErrorRequestHandler = async (
   error: {
     status?: number
     message: string
   },
-  _: Request,
-  res: Response,
-  next: NextFunction
-) {
+  _req,
+  res,
+  next
+) => {
   if (res.headersSent) return next(error)
 
   const status = error.status ?? 500

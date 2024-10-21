@@ -1,11 +1,7 @@
-import type { NextFunction, Request, Response } from "express"
+import type { RequestHandler } from "express"
 import { NotAuthenticatedError } from "../lib/exceptions"
 
-export default function userAuthenticated(
-  req: Request,
-  _: Response,
-  next: NextFunction
-) {
+export const userAuthenticated: RequestHandler = async (req, _res, next) => {
   if (req.user === undefined) return next(new NotAuthenticatedError())
   next()
 }

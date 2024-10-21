@@ -3,7 +3,7 @@ import passport from "passport"
 import * as controller from "../controllers/auth"
 import { catchAsync } from "../lib/utils"
 import { registerAccountLimiter } from "../middlewares/rate-limiter"
-import userAuthenticated from "../middlewares/user-authenticated"
+import { userAuthenticated } from "../middlewares/user-authenticated"
 
 const router = Router()
 

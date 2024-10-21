@@ -1,7 +1,7 @@
 import { Router } from "express"
 import * as controller from "../controllers/reviews"
 import { catchAsync } from "../lib/utils"
-import userAuthenticated from "../middlewares/user-authenticated"
+import { userAuthenticated } from "../middlewares/user-authenticated"
 
 const router = Router({ mergeParams: true })
 
