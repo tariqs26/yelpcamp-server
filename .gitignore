@@ -1,19 +1,14 @@
-# Logs
+node_modules
+
+# logs
 logs
 *.log
 npm-debug.log*
 
-node_modules
-
-# Runtime data
+# env
 *.local
 .env
 
-# typescript
+# build
 *.tsbuildinfo
 dist
-dist-ssr
-
-
-
-
