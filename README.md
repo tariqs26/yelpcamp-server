@@ -38,14 +38,15 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 | `POST /campgrounds/:cid/reviews`        | create review for a campground       |
 | `DELETE /campgrounds/:cid/reviews/:rId` | delete review for a campground by id |
 
-### Users
+### Auth
 
-| Endpoint         | Description                        |
-| ---------------- | ---------------------------------- |
-| `POST /register` | register a user                    |
-| `POST /login`    | login a user                       |
-| `POST /logout`   | logout a user                      |
-| `GET /getUser`   | return current user in the session |
+| Endpoint             | Description                        |
+| -------------------- | ---------------------------------- |
+| `POST /register`     | register a user                    |
+| `POST /login`        | login a user                       |
+| `POST /logout`       | logout a user                      |
+| `GET /getUser`       | return current user in the session |
+| `DELETE /deleteUser` | delete current user in the session |
 
 ## Data Models
 
