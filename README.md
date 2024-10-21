@@ -1,6 +1,6 @@
 # YelpCamp API
 
-REST API for campgrounds application, built with Node.js, Express, MongoDB and Mongoose.
+REST API for campgrounds application, built with Node.js, Express, and MongoDB.
 
 ## Technologies Used
 
@@ -21,32 +21,38 @@ REST API for campgrounds application, built with Node.js, Express, MongoDB and M
 
 ## Endpoints
 
-### Campgrounds
-
-| Endpoint                  | Description             |
-| ------------------------- | ----------------------- |
-| `GET /campgrounds`        | return campgrounds      |
-| `POST /campgrounds`       | create campground       |
-| `GET /campgrounds/:id`    | return campground by id |
-| `PUT /campgrounds/:id`    | update campground by id |
-| `DELETE /campgrounds/:id` | delete campground by id |
-
-### Reviews
-
-| Endpoint                                | Description                          |
-| --------------------------------------- | ------------------------------------ |
-| `POST /campgrounds/:cid/reviews`        | create review for a campground       |
-| `DELETE /campgrounds/:cid/reviews/:rId` | delete review for a campground by id |
+| Endpoint         | Description                              |
+| ---------------- | ---------------------------------------- |
+| `/healthz`       | Health check                             |
+| `/api-docs`      | Swagger API documentation                |
+| `/api-docs.json` | Swagger API documentation in JSON format |
 
 ### Auth
 
-| Endpoint             | Description                        |
-| -------------------- | ---------------------------------- |
-| `POST /register`     | register a user                    |
-| `POST /login`        | login a user                       |
-| `POST /logout`       | logout a user                      |
-| `GET /getUser`       | return current user in the session |
-| `DELETE /deleteUser` | delete current user in the session |
+| Endpoint                | Description                  |
+| ----------------------- | ---------------------------- |
+| `POST /register`        | Register                     |
+| `POST /login`           | Login                        |
+| `POST /logout`          | Logout                       |
+| `GET /getUser`          | Get the current session user |
+| `DELETE /deleteAccount` | Delete account               |
+
+### Campgrounds
+
+| Endpoint                  | Description       |
+| ------------------------- | ----------------- |
+| `GET /campgrounds`        | Get campgrounds   |
+| `POST /campgrounds`       | Create campground |
+| `GET /campgrounds/:id`    | Get campground    |
+| `PUT /campgrounds/:id`    | Update campground |
+| `DELETE /campgrounds/:id` | Delete campground |
+
+### Reviews
+
+| Endpoint                                | Description   |
+| --------------------------------------- | ------------- |
+| `POST /campgrounds/:cid/reviews`        | Create review |
+| `DELETE /campgrounds/:cid/reviews/:rId` | Delete review |
 
 ## Data Models
 
