@@ -4,20 +4,13 @@ REST API for campgrounds application, built with Node.js, Express, and MongoDB.
 
 ## Technologies Used
 
-| Technology                                                                     | Purpose                                  |
-| ------------------------------------------------------------------------------ | ---------------------------------------- |
-| [Express](http://expressjs.com/)                                               | Web framework                            |
-| [MongoDB](https://mongodb.com/)                                                | Database                                 |
-| [Mongoose](https://mongoosejs.com/)                                            | ODM                                      |
-| [Passport](http://passportjs.org/)                                             | Authentication                           |
-| [Express-Session](https://npmjs.com/package/express-session)                   | Session management                       |
-| [Express-Mongo-Sanitize](https://www.npmjs.com/package/express-mongo-sanitize) | Preventing NoSQL injections              |
-| [Express-Rate-Limit](https://www.npmjs.com/package/express-rate-limit)         | Rate limiting                            |
-| [Cors](https://npmjs.com/package/cors)                                         | Cross-origin resource sharing middleware |
-| [Dotenv](https://npmjs.com/package/dotenv)                                     | Environment variables                    |
-| [Helmet](https://helmetjs.github.io/)                                          | Setting security-related HTTP headers    |
-| [Swagger](https://swagger.io/)                                                 | API documentation                        |
-| [Zod](https://zod.dev/)                                                        | Validation Library                       |
+| Technology                          | Purpose           |
+| ----------------------------------- | ----------------- |
+| [Express](http://expressjs.com/)    | Web framework     |
+| [MongoDB](https://mongodb.com/)     | Database          |
+| [Mongoose](https://mongoosejs.com/) | ODM               |
+| [Passport](http://passportjs.org/)  | Authentication    |
+| [Swagger](https://swagger.io/)      | API documentation |
 
 ## Endpoints
 
