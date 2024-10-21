@@ -30,6 +30,8 @@ connect(env.DATABASE_URL)
 
 const app = express()
 
+if (env.NODE_ENV === "production") app.set("trust proxy", 1)
+
 app.use(express.json({ limit: "10kb" }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({ origin: env.CLIENT_ORIGIN, credentials: true }))
@@ -44,8 +46,6 @@ const store = new MongoDBStore({
   console.error("Session store error", error)
 })
 
-if (env.NODE_ENV === "production") app.set("trust proxy", 1)
-
 app.use(
   session({
     store,
@@ -55,6 +55,7 @@ app.use(
     name: "session",
     cookie: {
       secure: env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
     },
   })
@@ -76,7 +77,6 @@ app.all("*", (_, __, next) => {
 app.use(errorHandler)
 
 const port = env.PORT ?? 3000
-
 const serverUrl = `http://localhost:${port}`
 
 app
