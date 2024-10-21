@@ -9,9 +9,11 @@ const router = Router()
 
 router
   .post("/register", registerAccountLimiter, catchAsync(controller.register))
-  .post("/login", passport.authenticate("local"), catchAsync(controller.login))
+  .post("/login", passport.authenticate("local"), controller.login)
   .post("/logout", controller.logout)
-  .get("/getUser", catchAsync(controller.login))
+  .get("/getUser", (req, res) => {
+    res.send(req.user)
+  })
   .delete(
     "/deleteAccount",
     userAuthenticated,

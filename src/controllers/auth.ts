@@ -9,11 +9,11 @@ export const register = async (req: Request, res: Response) => {
   res.send(await User.register(user, password))
 }
 
-export const login = async (req: Request, res: Response) => {
+export const login = (req: Request, res: Response) => {
   res.send(req.user)
 }
 
-export const logout = async (req: Request, res: Response) => {
+export const logout = (req: Request, res: Response) => {
   req.logout(() => res.send("Logged out"))
 }
 
