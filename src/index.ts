@@ -51,11 +51,11 @@ app.use(
     store,
     secret: env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     name: "session",
     cookie: {
       secure: env.NODE_ENV === "production",
-      sameSite: "lax",
+      sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
     },
   })
