@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler } from "express"
 
-export const errorHandler: ErrorRequestHandler = async (
+export const errorHandler: ErrorRequestHandler = (
   error: {
     status?: number
     message: string
