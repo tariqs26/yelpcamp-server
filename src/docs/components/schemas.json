@@ -22,6 +22,16 @@
       "image": {
         "type": "string",
         "default": "https://images.unsplash.com/photo..."
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "default": "2021-01-01T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "default": "2021-01-01T00:00:00.000Z"
       }
     }
   },
@@ -37,6 +47,30 @@
       "totalPages": {
         "type": "number",
         "default": 1
+      }
+    }
+  },
+  "Review": {
+    "type": "object",
+    "required": ["rating", "body"],
+    "properties": {
+      "rating": {
+        "type": "number",
+        "default": 5
+      },
+      "body": {
+        "type": "string",
+        "default": "This campground was amazing!"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "default": "2021-01-01T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "default": "2021-01-01T00:00:00.000Z"
       }
     }
   }
