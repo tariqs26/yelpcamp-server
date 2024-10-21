@@ -62,6 +62,6 @@ export const updateCampground = async (req: Request, res: Response) => {
 
 export const deleteCampground = async (req: Request, res: Response) => {
   await Campground.findByIdAndDelete(getParamsId(req))
-  
+
   res.json("Campground deleted successfully")
 }
