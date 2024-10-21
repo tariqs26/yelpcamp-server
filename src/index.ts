@@ -1,4 +1,4 @@
-import MongoDBStore from "connect-mongo"
+import MongoStore from "connect-mongo"
 import cors from "cors"
 import express from "express"
 import mongoSanitize from "express-mongo-sanitize"
@@ -9,14 +9,15 @@ import morgan from "morgan"
 import passport from "passport"
 import { Strategy } from "passport-local"
 
+import authRoutes from "./routers/auth"
+import campgroundRoutes from "./routers/campgrounds"
+import reviewRoutes from "./routers/reviews"
+
 import { env } from "./lib/env"
 import { NotFoundError } from "./lib/exceptions"
 import swaggerDocs from "./lib/swagger"
 import { errorHandler } from "./middlewares/error-handler"
 import User from "./models/user"
-import campgroundRoutes from "./routers/campgrounds"
-import reviewRoutes from "./routers/reviews"
-import authRoutes from "./routers/auth"
 
 set("strictQuery", true)
 if (env.NODE_ENV === "development") set("debug", true)
@@ -39,16 +40,8 @@ app.use(morgan("dev"))
 app.use(helmet())
 app.use(mongoSanitize())
 
-const store = new MongoDBStore({
-  mongoUrl: env.DATABASE_URL,
-  touchAfter: 24 * 60 * 60,
-}).on("error", (error) => {
-  console.error("Session store error", error)
-})
-
 app.use(
   session({
-    store,
     secret: env.SECRET,
     resave: false,
     saveUninitialized: false,
@@ -58,6 +51,9 @@ app.use(
       sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
     },
+    store: MongoStore.create({
+      mongoUrl: env.DATABASE_URL,
+    }),
   })
 )
 
