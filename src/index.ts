@@ -16,7 +16,7 @@ import errorHandler from "./middlewares/error-handler"
 import User from "./models/user"
 import campgroundRoutes from "./routers/campgrounds"
 import reviewRoutes from "./routers/reviews"
-import userRoutes from "./routers/users"
+import authRoutes from "./routers/auth"
 
 set("strictQuery", true)
 if (env.NODE_ENV === "development") set("debug", true)
@@ -65,9 +65,9 @@ passport.use(new Strategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+app.use("/", authRoutes)
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
-app.use("/", userRoutes)
 
 swaggerDocs(app)
 app.all("*", (_, __, next) => {
