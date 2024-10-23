@@ -75,7 +75,7 @@ app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
 swaggerDocs(app)
 app.all("*", (_req, _res, next) => {
-  next(new NotFoundError("Page"))
+  next(new NotFoundError("Route"))
 })
 app.use(errorHandler)
 
