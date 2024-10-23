@@ -9,8 +9,15 @@ export const register = async (req: Request, res: Response) => {
   res.send(await User.register(user, password))
 }
 
-export const login = (req: Request, res: Response) => {
-  res.send(req.user)
+export const getUser = (req: Request, res: Response) => {
+  if (!req.user) res.send(null)
+  else
+    res.send({
+      _id: req.user._id,
+      email: req.user.email,
+      username: req.user.username,
+      isAdmin: req.user.isAdmin,
+    })
 }
 
 export const logout = (req: Request, res: Response) => {
