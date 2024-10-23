@@ -26,19 +26,19 @@ connect(env.DATABASE_URL)
     console.log("Database connecting successfully")
   })
   .catch((error) => {
-    console.error("Database connection error:", error)
+    console.error("Database connection failed:", error.message)
   })
 
 const app = express()
 
 if (env.NODE_ENV === "production") app.set("trust proxy", 1)
 
+app.use(helmet())
 app.use(express.json({ limit: "10kb" }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({ origin: env.CLIENT_ORIGIN, credentials: true }))
-app.use(morgan("dev"))
-app.use(helmet())
 app.use(mongoSanitize())
+app.use(morgan("dev"))
 
 app.use(
   session({
@@ -84,9 +84,9 @@ const serverUrl = `http://localhost:${port}`
 
 app
   .listen(port, () => {
-    console.log(env)
-    console.log(`🗲 Server is running on ${serverUrl}`)
-    console.log(`📑 Swagger docs is running on ${serverUrl}/api-docs`)
+    console.info(env)
+    console.info(`🗲 Server is running on ${serverUrl}`)
+    console.info(`📑 Swagger docs is running on ${serverUrl}/api-docs`)
   })
   .on("error", (error) => {
     console.error("Server error:", error.message)
