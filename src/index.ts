@@ -64,7 +64,7 @@ passport.deserializeUser(User.deserializeUser())
 
 app.get("/healthz", (_req, res) => {
   const uptime = process.hrtime()
-  res.json({
+  res.send({
     status: "ok",
     timestamp: new Date().toISOString(),
     uptime: `${uptime[0]}s ${uptime[1] / 1e6}ms`,
@@ -74,8 +74,8 @@ app.use("/", authRoutes)
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
 swaggerDocs(app)
-app.all("*", (_req, _res, next) => {
-  next(new NotFoundError("Route"))
+app.all("*", () => {
+  throw new NotFoundError("Route")
 })
 app.use(errorHandler)
 
