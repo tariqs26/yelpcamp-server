@@ -104,7 +104,7 @@ const ReviewSchema = new Schema(
 
 ## Setup
 
-To set up and run the project locally, follow the instructions below:
+To set up and run the project locally, clone the repo and follow the instructions below:
 
 ### Install Dependencies
 
@@ -126,8 +126,6 @@ CLIENT_ORIGIN= # Client URL, used for CORS configuration
 
 ## Available Scripts
 
-The following npm scripts are available to streamline common tasks:
-
 | Script           | Description                                                    |
 | ---------------- | -------------------------------------------------------------- |
 | `npm run dev`    | Start the server in development mode (`http://localhost:3000`) |
@@ -138,6 +136,3 @@ The following npm scripts are available to streamline common tasks:
 | `npm start`      | Start the production server                                    |
 | `npm run seed`   | Seed the database with sample data                             |
 
-## Contributing
-
-Contributions are welcome. Please open an issue to discuss any major changes or feature requests. When submitting a pull request, ensure your changes are well-documented and tested.
