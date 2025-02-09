@@ -8,8 +8,8 @@
     "clean": "rm -rf dist & rm tsconfig.tsbuildinfo",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "lint": "npx @biomejs/biome lint --write ./src",
-    "format": "npx prettier --write .",
+    "lint": "npx @biomejs/biome lint",
+    "format": "npx @biomejs/biome format --write",
     "seed": "tsx src/seeds/index.ts"
   },
   "author": "Saad Tariq",

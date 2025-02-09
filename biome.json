@@ -7,25 +7,26 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": []
+    "ignore": ["dist"]
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "tab"
+    "indentStyle": "space"
   },
   "organizeImports": {
     "enabled": true
   },
   "linter": {
     "enabled": true,
-    "ignore": ["dist"],
     "rules": {
       "recommended": true
     }
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "double"
+      "quoteStyle": "double",
+      "semicolons": "asNeeded",
+      "trailingCommas": "es5"
     }
   }
 }
