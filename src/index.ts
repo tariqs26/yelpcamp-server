@@ -1,7 +1,6 @@
 import MongoStore from "connect-mongo"
 import cors from "cors"
 import express from "express"
-import mongoSanitize from "express-mongo-sanitize"
 import session from "express-session"
 import helmet from "helmet"
 import { connect, set } from "mongoose"
@@ -37,7 +36,6 @@ app.use(helmet())
 app.use(express.json({ limit: "10kb" }))
 app.use(express.urlencoded())
 app.use(cors({ origin: env.CLIENT_ORIGIN, credentials: true }))
-app.use(mongoSanitize())
 app.use(morgan("dev"))
 
 app.use(
@@ -51,9 +49,7 @@ app.use(
       sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
     },
-    store: MongoStore.create({
-      mongoUrl: env.DATABASE_URL,
-    }),
+    store: MongoStore.create({ mongoUrl: env.DATABASE_URL }),
   })
 )
 
