@@ -35,7 +35,7 @@ if (env.NODE_ENV === "production") app.set("trust proxy", 1)
 
 app.use(helmet())
 app.use(express.json({ limit: "10kb" }))
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded())
 app.use(cors({ origin: env.CLIENT_ORIGIN, credentials: true }))
 app.use(mongoSanitize())
 app.use(morgan("dev"))
@@ -74,12 +74,12 @@ app.use("/", authRoutes)
 app.use("/campgrounds", campgroundRoutes)
 app.use("/campgrounds/:id/reviews", reviewRoutes)
 swaggerDocs(app)
-app.all("*", () => {
+app.all("*all", () => {
   throw new NotFoundError("Route")
 })
 app.use(errorHandler)
 
-const port = env.PORT ?? 3000
+const port = env.PORT
 const serverUrl = `http://localhost:${port}`
 
 app
