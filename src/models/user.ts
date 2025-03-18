@@ -4,16 +4,8 @@ import Campground from "./campground"
 import Review from "./review"
 
 const UserSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-    immutable: true,
-  },
+  email: { type: String, required: true, unique: true },
+  isAdmin: { type: Boolean, default: false, immutable: true },
 })
 
 UserSchema.plugin(passportLocalMongoose)
