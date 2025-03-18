@@ -11,8 +11,7 @@ router
   .route("/")
   .get(catchAsync(controller.getCampgrounds))
   .post(
-    userAuthenticated,
-    createCampgroundLimiter,
+    [userAuthenticated, createCampgroundLimiter],
     catchAsync(controller.createCampground)
   )
 
@@ -20,13 +19,11 @@ router
   .route("/:id")
   .get(catchAsync(controller.getCampground))
   .put(
-    userAuthenticated,
-    userAuthorized,
+    [userAuthenticated, userAuthorized],
     catchAsync(controller.updateCampground)
   )
   .delete(
-    userAuthenticated,
-    userAuthorized,
+    [userAuthenticated, userAuthorized],
     catchAsync(controller.deleteCampground)
   )
 
