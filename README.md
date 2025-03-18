@@ -132,7 +132,6 @@ CLIENT_ORIGIN= # Client URL, used for CORS configuration
 | `npm run lint`   | Lint the codebase using Biome                                  |
 | `npm run format` | Format the codebase using Prettier                             |
 | `npm run build`  | Build the server for production                                |
-| `npm run clean`  | Clean the build directory                                      |
 | `npm start`      | Start the production server                                    |
 | `npm run seed`   | Seed the database with sample data                             |
 
