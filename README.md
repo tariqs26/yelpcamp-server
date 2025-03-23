@@ -14,63 +14,47 @@ RESTful API for [**YelpCamp**](https://github.com/tariqs26/yelpcamp-client), bui
 
 ## Endpoints
 
-### General
+**General:**
 
-| Endpoint             | Description                                  |
-| -------------------- | -------------------------------------------- |
-| `GET /healthz`       | Health check to confirm server status        |
-| `GET /api-docs`      | Swagger API documentation                    |
-| `GET /api-docs.json` | JSON format of the Swagger API documentation |
+- `GET /healthz`: Health check to confirm server status
+- `GET /api-docs`: Swagger API documentation
+- `GET /api-docs.json`: JSON format of the Swagger API documentation
 
-### Authentication
+**Auth:**
 
-| Endpoint                | Description                             |
-| ----------------------- | --------------------------------------- |
-| `POST /register`        | Register a new user                     |
-| `POST /login`           | Login and create a session              |
-| `POST /logout`          | Logout the current session              |
-| `GET /getUser`          | Get the authenticated user’s details    |
-| `DELETE /deleteAccount` | Delete the authenticated user’s account |
+- `POST /register`: Register a new user
+- `POST /login`: Login and create a session
+- `POST /logout`: Logout the current session
+- `GET /getUser`: Get the authenticated user’s details
+- `DELETE /deleteAccount`: Delete the authenticated user’s account
 
-### Campgrounds
+**Campgrounds:**
 
-| Endpoint                  | Description                               |
-| ------------------------- | ----------------------------------------- |
-| `GET /campgrounds`        | Retrieve a list of all campgrounds        |
-| `POST /campgrounds`       | Create a new campground                   |
-| `GET /campgrounds/:id`    | Retrieve details of a specific campground |
-| `PUT /campgrounds/:id`    | Update a specific campground              |
-| `DELETE /campgrounds/:id` | Delete a specific campground              |
+- `POST /campgrounds`: Create a new campground
+- `GET /campgrounds`: Retrieve a list of all campgrounds
+- `GET /campgrounds/:id`: Retrieve details of a specific campground
+- `PUT /campgrounds/:id`: Update a specific campground
+- `DELETE /campgrounds/:id`: Delete a specific campground
 
-### Reviews
+**Reviews:**
 
-| Endpoint                                | Description                                |
-| --------------------------------------- | ------------------------------------------ |
-| `POST /campgrounds/:cid/reviews`        | Create a review for a specific campground  |
-| `DELETE /campgrounds/:cid/reviews/:rId` | Delete a review from a specific campground |
+- `POST /campgrounds/:cid/reviews`: Create a review for a specific campground
+- `DELETE /campgrounds/:cid/reviews/:rId`: Delete a review from a specific campground
 
 ## Data Models
 
-The API uses the following Mongoose schemas to define its data structure:
-
-### User
+The API uses the following Mongoose schemas to define the data models:
 
 ```ts
+// Users
 const UserSchema = new Schema({
   email: String,
   username: String,
   password: String,
-  isAdmin: {
-    type: Boolean,
-    default: false,
-    immutable: true,
-  },
+  isAdmin: { type: Boolean, default: false, immutable: true },
 })
-```
 
-### Campground
-
-```ts
+// Campgrounds
 const CampgroundSchema = new Schema(
   {
     title: String,
@@ -87,11 +71,8 @@ const CampgroundSchema = new Schema(
   },
   { timestamps: true }
 )
-```
 
-### Review
-
-```ts
+// Reviews
 const ReviewSchema = new Schema(
   {
     body: String,
@@ -104,15 +85,20 @@ const ReviewSchema = new Schema(
 
 ## Setup
 
-To set up and run the project locally, clone the repo and follow the instructions below:
-
-### Install Dependencies
+**1. Clone the repo**
 
 ```bash
-npm install
+git clone https://github.com/tariqs26/yelpcamp-server.git
+cd yelpcamp-server
 ```
 
-### Configure Environment Variables
+**2. Install dependencies**
+
+```bash
+npm i
+```
+
+**3. Configure environment variables**
 
 Create a `.env` file in the root of your project with the following variables:
 
@@ -122,6 +108,12 @@ SECRET=        # Secret used for signing session cookie
 MAPBOX_TOKEN=  # Mapbox API token
 CLIENT_ORIGIN= # Client URL, used for CORS configuration
 # Note: To use a non-https origin, remove the `secure` option from the cookie session
+```
+
+**4. Start the development server**
+
+```bash
+npm run dev
 ```
 
 ## Available Scripts
@@ -134,4 +126,3 @@ CLIENT_ORIGIN= # Client URL, used for CORS configuration
 | `npm run build`  | Build the server for production                                |
 | `npm start`      | Start the production server                                    |
 | `npm run seed`   | Seed the database with sample data                             |
-
